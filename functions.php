@@ -73,7 +73,7 @@ function custom_breadcrumbs(){
                 echo $parents;
                    
                 // Current page
-                echo '<h1 class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></h1>';
+                echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
                    
             } else {
                    
@@ -181,11 +181,10 @@ add_action('wp_loaded', 'remove_my_parent_theme_function');
 function makeMenu($parent = 0, $the_class ='main-header') {
          $args = array(
                         'sort_order' => 'asc',
-                        'sort_column' => 'post_title',                      
                         'parent' => $parent,                      
                         'post_type' => 'page',
                         'post_status' => 'publish',
-                        'sort_column'  => 'menu_order, post_title'
+                        'sort_column'  => 'post_date'
                     ); 
                     $pages = get_pages($args); 
                     $number = sizeof($pages);

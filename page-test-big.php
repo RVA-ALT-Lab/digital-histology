@@ -36,15 +36,14 @@ Template Name: Big Page
 										</div>
 									<?php endif ?>
 								
-								<!--SLIDES BEGIN aka custom fields data-->
+<!--SLIDES BEGIN aka custom fields data-->
 									<?php 						
 									   if( have_rows('histo_slide') ): 
 										$count = 1;
-									    $menu = ['Main Slide'];
+									    $menu = ['Main Slide']; 
 									?>
 									
 									<?php while( have_rows('histo_slide') ): the_row(); 
-
 										// vars
 										$image = get_sub_field('slide_url');
 										$content = get_sub_field('slide_text');
@@ -52,7 +51,7 @@ Template Name: Big Page
 										//$contentTrue = subTrue('slide_text');
 										$count = $count+1;
 										if ($title != ' '){
-										array_push($menu,$title.$contentTrue);
+											array_push($menu,$title.$contentTrue);
 										}
 									?>
 									<div class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
@@ -86,38 +85,37 @@ Template Name: Big Page
 
 								 ?>
 							</div>
-							<!--END SLIDE MENU-->
+<!--END SLIDE MENU-->
 						</div>
 						
 						<?php endif; ?>		
 						<!--SUB PAGES MENU-->
 						<?php if( have_rows('histo_slide')) {
-//								echo '<div class="cell-topics">';
+
 									 getPrevNext(); 
 							} else {
 								echo '<div class="cell-topics-list"><ul>';
 									$post_id = get_the_ID();
 									$ancestor_id = get_ancestors($post_id,'page', 'post_type')[0];
 									wp_list_pages( array(
-									'title_li'    => '',
-									'child_of'    => $ancestor_id,
-									'post_status' => 'publish',
-									'orderby' => 'menu_order',
-									) );
+										'title_li'    => '',
+										'child_of'    => $ancestor_id,
+										'post_status' => 'publish',
+										'sort_column' => 'post_date', 
+										) 
+								);
 								echo '</ul>';
 						} ?>										
 
-						<!--</div>-->
-
-						</section> <!-- end article section -->
+					</section> <!-- end article section -->
 						
-						<footer>
+					<footer>
 			
 							<p class="clearfix"><?php the_tags('<span class="tags">' . __("Tags","wpbootstrap") . ': ', ', ', '</span>'); ?></p>
 
-						</footer> <!-- end article footer -->
+					</footer> <!-- end article footer -->
 					
-					</article> <!-- end article -->
+				</article> <!-- end article -->
 					
 					<?php comments_template(); ?>
 					
