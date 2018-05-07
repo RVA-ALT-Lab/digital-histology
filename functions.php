@@ -203,8 +203,84 @@ function makeMenu($parent = 0, $the_class ='main-header') {
                     
                 }
 
-function main_slide_title($id){
-    if(get_field('main_slide_title', $id)){
-        return get_field('main_slide_title', $id);
+function main_slide_title($post_id){
+    if(get_field('main_slide_title', $post_id)){
+        return get_field('main_slide_title', $post_id);
     }
-}                
+}
+
+
+//sets a custom field to indicate if a page has children to save a call later
+add_action( 'save_post', 'has_child_meta' );
+
+function has_child_meta(){
+    global $post;
+    $post_id = $post->ID;
+     if (get_post_type($post_id)==='page'){
+         $args = array(
+                'parent' => $post_id,                      
+                'post_type' => 'page',
+                'post_status' => 'publish',
+                'number' => 1, //we only need one
+            ); 
+         $pages = get_pages($args); 
+         $number = sizeof($pages);
+        if ($number != 0 ) {
+            add_post_meta($post_id, 'has_children', 1, true);
+        } else {
+            add_post_meta($post_id, 'has_children', 0, true);
+        }
+    }
+}    
+
+add_action( 'save_post', 'has_child_meta_to_parent' );
+function has_child_meta_to_parent(){
+    global $post;
+    $parent = $post->post_parent;
+        if ($parent != 0 ) {
+            add_post_meta($parent, 'has_children', 1, true);
+        } else {
+            add_post_meta($parent, 'has_children', 0, true);
+        }
+    }
+
+//PUTS has_children INTO THE API
+function children_get_post_meta_cb($object, $field_name, $request){
+        return get_post_meta($object['id'], $field_name, true); 
+}
+function children_update_post_meta_cb($value, $object, $field_name){
+  return update_post_meta($object['id'], $field_name, $value); 
+}
+add_action('rest_api_init', function(){
+  register_rest_field('page', 'has_children', 
+    array(
+    'get_callback' => 'children_get_post_meta_cb', 
+    'update_callback' => 'children_update_post_meta_cb', 
+    'schema' => null
+    )
+  ); 
+});
+
+//THIS LETS US SEARCH BY has_children variables
+add_filter( 'rest_page_query', function( $args, $request ) {
+    $has_children   = $request->get_param( 'has_children' );
+
+    if ( ! empty( $has_children ) ) {
+        $args['meta_query'] = array(
+            array(
+                'key'     => 'has_children',
+                'value'   => $has_children,
+                'compare' => '=',
+            )
+        );      
+    }
+
+    return $args;
+}, 10, 2 );
+
+
+
+//make ACF let you see custom fields
+add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
+
+

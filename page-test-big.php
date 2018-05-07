@@ -19,7 +19,7 @@ Template Name: Big Page
 						<?php echo custom_breadcrumbs(); ?>
 							
 						</header> <!-- end article header -->
-						
+						<?php var_dump(has_child_meta());?>
 						<section class="post-content row" aria-labelledby="the_slide_title">
 							<div class="hist-slides">
 								<div class="subcontent col-md-9">
@@ -91,7 +91,6 @@ Template Name: Big Page
 						<?php endif; ?>		
 						<!--SUB PAGES MENU-->
 						<?php if( have_rows('histo_slide')) {
-
 									 getPrevNext(); 
 							} else {
 								echo '<div class="cell-topics-list"><ul>';
