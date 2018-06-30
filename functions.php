@@ -284,3 +284,13 @@ add_filter( 'rest_page_query', function( $args, $request ) {
 add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
 
 
+//MODIFY H5P TO GO FULL SCREEN
+
+function h5p_full_img_alter_styles(&$styles, $libraries, $embed_type) {
+  $styles[] = (object) array(
+    // Path must be relative to wp-content/uploads/h5p or absolute.
+    'path' => get_stylesheet_directory_uri() . '/custom-h5p.css',
+    'version' => '?ver=0.1' // Cache buster
+  );
+}
+add_action('h5p_alter_library_styles', 'h5p_full_img_alter_styles', 10, 3);

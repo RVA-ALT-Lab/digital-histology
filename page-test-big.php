@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Big Page
+Template Name: Histology Page
 */
 ?>
 
@@ -19,7 +19,6 @@ Template Name: Big Page
 						<?php echo custom_breadcrumbs(); ?>
 							
 						</header> <!-- end article header -->
-						<?php var_dump(has_child_meta());?>
 						<section class="post-content row" aria-labelledby="the_slide_title">
 							<div class="hist-slides">
 								<div class="subcontent col-md-9">
@@ -28,10 +27,10 @@ Template Name: Big Page
 										<div class="subcontent-1 subslide active"  <?php get_post_background_img ($post)?>>
 											<img src="<?php echo get_stylesheet_directory_uri()."/imgs/trans.png"; ?>" alt="This is blank.">
 											<h1 id="the_slide_title" class="slide-title"><?php echo main_slide_title(get_the_ID()); ?></h1>
-											<?php the_content(); ?>
+											<div id="the_slide_content"><?php the_content(); ?></div>
 										</div>
 									<?php else :?>
-										<div class="subcontent-1  active">
+										<div class="subcontent-1 active" id="sub-con">
 											<?php the_content(); ?>
 										</div>
 									<?php endif ?>
@@ -79,7 +78,7 @@ Template Name: Big Page
 								 $length = count($menu);
 								 $i = 0;
 								 while ( $i < $length){
-								 	echo '<a href="#" class="button">' .$menu[$i] . '</a>';
+								 	echo '<a href="#" class="button" id="slide-button-'.$i.' data-id="'.$i.'">' .$menu[$i] . '</a>';
 								 	$i++;
 								 }
 
@@ -100,7 +99,7 @@ Template Name: Big Page
 										'title_li'    => '',
 										'child_of'    => $ancestor_id,
 										'post_status' => 'publish',
-										'sort_column' => 'post_date', 
+										'sort_column' => 'post_date', 										
 										) 
 								);
 								echo '</ul>';

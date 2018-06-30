@@ -1,20 +1,22 @@
 (function($) {
 
-$('.button').first().addClass('active');
+  $('.button').first().addClass('active');
 
-$('.button').click(function(){
-  var $this = $(this);
-  $siblings = $this.parent().children(),
-  position = $siblings.index($this);
-  console.log (position);
-  
-  $('.subcontent div').removeClass('active').eq(position).addClass('active');
-  
-  $siblings.removeClass('active');
-  $this.addClass('active');
-})
+  $('.button').click(function(){
+    var $this = $(this);
+    $siblings = $this.parent().children(),
+    console.log($siblings);
+    position = $siblings.index($this)+1;
+    console.log (position);
+    
+    $('.subcontent div').removeClass('active').eq(position).addClass('active');
+    
+    $siblings.removeClass('active');
+    $this.addClass('active');
+  })
 
-})( jQuery );
+})(jQuery);
+
 
 //main index interactions
 
@@ -37,3 +39,29 @@ for (var i =0; i < buttons.length; i++){
     buttons[i].style.paddingLeft = '1em';
   }
 }
+
+
+//full size h5p images
+
+
+document.querySelector('iframe').addEventListener("load", ev => {
+    // your stuff
+
+if (document.getElementsByClassName('h5p-iframe')){
+  var iframe = document.getElementById('h5p-iframe-1');
+  var one = iframe.contentWindow.document.querySelectorAll('.h5p-question-image-wrap.h5p-question-image-scalable')[0].style.width = '100%';
+  var two = iframe.contentWindow.document.querySelectorAll('.h5p-question-image-wrap.h5p-question-image-scalable')[1].style.width = '100%';
+ console.log(one);
+  console.log(two);
+ 
+}
+
+})
+
+
+/* var div = innerDoc.document.getElementById('h5p-mcq0');
+  console.log('div-'+div);
+   var image = innerDoc.querySelector('.h5-question-image');
+   console.log(image);
+   image.classList.add("h5p-question-image-fill-width");
+   */

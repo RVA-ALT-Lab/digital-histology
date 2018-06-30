@@ -1,0 +1,9 @@
+.h5p-column-content.h5p-image > img, .h5p-question-image-scalable  {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%  !important;
+}
+
+.h5p-question-scorebar-container {
+	display: none !important;
+}
