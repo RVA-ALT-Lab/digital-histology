@@ -41,27 +41,38 @@ for (var i =0; i < buttons.length; i++){
 }
 
 
-//full size h5p images
+/*full size h5p images
 
-
-document.querySelector('iframe').addEventListener("load", ev => {
-    // your stuff
-
-if (document.getElementsByClassName('h5p-iframe')){
-  var iframe = document.getElementById('h5p-iframe-1');
-  var one = iframe.contentWindow.document.querySelectorAll('.h5p-question-image-wrap.h5p-question-image-scalable')[0].style.width = '100%';
-  var two = iframe.contentWindow.document.querySelectorAll('.h5p-question-image-wrap.h5p-question-image-scalable')[1].style.width = '100%';
- console.log(one);
-  console.log(two);
- 
+if (document.getElementById('h5p-iframe-11')){
+  var iframe = document.getElementById('h5p-iframe-11');
+  console.log(iframe);
+  var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+   console.log(innerDoc.getElementsByClassName('h5p-question-image-scalable'));
 }
 
-})
+var jquery = jQuery('#h5p-iframe-11').contents().find.('div').('h5p-question-image-scalable');
+jquery.classList.add('h5p-question-image-fill-width');
+*/
 
+function leftArrowPressed() {
+   var url = document.getElementById('nav-arrow-left').parentElement.href;
+   window.location.href = url;
+}
 
-/* var div = innerDoc.document.getElementById('h5p-mcq0');
-  console.log('div-'+div);
-   var image = innerDoc.querySelector('.h5-question-image');
-   console.log(image);
-   image.classList.add("h5p-question-image-fill-width");
-   */
+function rightArrowPressed() {
+   var url = document.getElementById('nav-arrow-right').parentElement.href;
+   window.location.href = url;
+
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    switch (evt.keyCode) {
+        case 37:
+            leftArrowPressed();
+            break;
+        case 39:
+            rightArrowPressed();
+            break;
+    }
+};
