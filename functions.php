@@ -34,11 +34,14 @@ if(!function_exists('load_my_script')){
     function load_my_script() {
         global $post;
         $deps = array('jquery');
-        $version= '1.0'; 
+        $version= '1.0';
         $in_footer = true;
         wp_enqueue_script('my-script', get_stylesheet_directory_uri() . '/js/extras.js', $deps, $version, $in_footer);
-           }
+        wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
+        wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);
+        }
 }
+
 add_action('wp_enqueue_scripts', 'load_my_script');
 
 // Load Font Awesome
@@ -54,13 +57,13 @@ function enqueue_font_awesome() {
 function custom_breadcrumbs(){
     global $post;
     if( $post->post_parent ){
-                   
-                // If child page, get parents 
+
+                // If child page, get parents
                 $anc = get_post_ancestors( $post->ID );
-                   
+
                 // Get parents in the right order
                 $anc = array_reverse($anc);
-                   
+
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
                 $parents .= '<span class="item-parent"><a class="bread-parent" href="/histology">Main Menu</a> &#187; </span> ';
@@ -68,18 +71,18 @@ function custom_breadcrumbs(){
                     $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
                     $parents .= '<span class="separator separator-' . $ancestor . '"> &#187; </span>';
                 }
-                   
+
                 // Display parent pages
                 echo $parents;
-                   
+
                 // Current page
                 echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
-                   
+
             } else {
-                   
+
                 // Just display current page if not parents
                 echo '<span class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '"> ' . get_the_title() . '</strong></span>';
-                   
+
             }
     }
 
@@ -87,21 +90,21 @@ function custom_breadcrumbs(){
 function get_post_background_img ($post) {
   if ( $thumbnail_id = get_post_thumbnail_id($post) ) {
         if ( $image_src = wp_get_attachment_image_src( $thumbnail_id, 'full-size' ) )
-            printf( ' style="background-image: url(%s);"', $image_src[0] );     
+            printf( ' style="background-image: url(%s);"', $image_src[0] );
     }
-}            
+}
 
 
 //next and prev pagination for pages from https://codex.wordpress.org/Next_and_Previous_Links#The_Next_and_Previous_Pages
 
-//gets the ones that have kids out of the mix 
+//gets the ones that have kids out of the mix
 function has_kids($pageID) {
     $args = array(
     'post_parent' => $pageID,
-    'post_type'   => 'page', 
+    'post_type'   => 'page',
     'numberposts' => 1,
     'post_status' => 'publish',
-    'orderby' => 'date_published', 
+    'orderby' => 'date_published',
 );
     $children = get_children( $args );
     return sizeof($children);
@@ -117,7 +120,7 @@ function getPrevNext(){
      'sort_order' => 'asc',
      'sort_column'  => 'post_date' //sorting by date created as a way to avoid 01 necessity
       ) );
-      
+
         $pages = array();
         //remove kids
         foreach ($pagelist as $page) {
@@ -128,41 +131,41 @@ function getPrevNext(){
         $current = array_search(get_the_ID(), $pages);
 
         $page_num =sizeof($pages);
-        
+
         $prevID = $pages[$current-1];
         $nextID = $pages[$current+1];
-        
+
         echo '<div class="navigation col-md-9">';
-        
+
         if (!empty($prevID)) {
             echo '<a href="';
             echo get_permalink($prevID);
             echo '" ';
             echo 'title="';
-            echo get_the_title($prevID); 
+            echo get_the_title($prevID);
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-left"><img src="'.get_stylesheet_directory_uri().'/imgs/arrow_left_ai.svg" alt="Left arrow."> PREV';
             echo '</div>';
             echo '</a>';
         }
-        
+
         if (empty($prevID)){
             echo '<div class="col-md-5 nav-arrow-empty" id="nav-arrow-left"></div>';
         }
         echo '<div class="total-pages col-md-2">'.($current+1) . ' of ' . $page_num . '</div>';
         if (!empty($nextID)) {
-           
+
             echo '<a href="';
             echo get_permalink($nextID);
             echo '"';
             echo 'title="';
-            echo get_the_title($nextID); 
+            echo get_the_title($nextID);
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-right">NEXT <img src="'.get_stylesheet_directory_uri().'/imgs/arrow_right_ai.svg" alt="Right arrow." ></div></a>';
-           
+
         }
-}   
+}
 
 
-//true false for slide navigation 
+//true false for slide navigation
 function subTrue ($fieldName){
     if (get_sub_field($fieldName)){
         return '<i class="fa fa-angle-double-right" aria-hidden="true"></i>';
@@ -181,12 +184,12 @@ add_action('wp_loaded', 'remove_my_parent_theme_function');
 function makeMenu($parent = 0, $the_class ='main-header') {
          $args = array(
                         'sort_order' => 'asc',
-                        'parent' => $parent,                      
+                        'parent' => $parent,
                         'post_type' => 'page',
                         'post_status' => 'publish',
                         'sort_column'  => 'post_date'
-                    ); 
-                    $pages = get_pages($args); 
+                    );
+                    $pages = get_pages($args);
                     $number = sizeof($pages);
                     $i = 0;
                     while ($i < $number){
@@ -194,13 +197,13 @@ function makeMenu($parent = 0, $the_class ='main-header') {
                         $parent_id = $pages[$i]->ID;
                         if (get_pages(array('child_of'=> $parent_id))) {
                         echo '<ul class="children parent'.$parent_id.'">';
-                        makeMenu($parent_id, 'page-item'); 
+                        makeMenu($parent_id, 'page-item');
                         echo '</ul>';
                     }
                     echo '</li>';
                         $i++;
                     }
-                    
+
                 }
 
 function main_slide_title($post_id){
@@ -218,12 +221,12 @@ function has_child_meta(){
     $post_id = $post->ID;
      if (get_post_type($post_id)==='page'){
          $args = array(
-                'parent' => $post_id,                      
+                'parent' => $post_id,
                 'post_type' => 'page',
                 'post_status' => 'publish',
                 'number' => 1, //we only need one
-            ); 
-         $pages = get_pages($args); 
+            );
+         $pages = get_pages($args);
          $number = sizeof($pages);
         if ($number != 0 ) {
             add_post_meta($post_id, 'has_children', 1, true);
@@ -231,7 +234,7 @@ function has_child_meta(){
             add_post_meta($post_id, 'has_children', 0, true);
         }
     }
-}    
+}
 
 add_action( 'save_post', 'has_child_meta_to_parent' );
 function has_child_meta_to_parent(){
@@ -246,19 +249,19 @@ function has_child_meta_to_parent(){
 
 //PUTS has_children INTO THE API
 function children_get_post_meta_cb($object, $field_name, $request){
-        return get_post_meta($object['id'], $field_name, true); 
+        return get_post_meta($object['id'], $field_name, true);
 }
 function children_update_post_meta_cb($value, $object, $field_name){
-  return update_post_meta($object['id'], $field_name, $value); 
+  return update_post_meta($object['id'], $field_name, $value);
 }
 add_action('rest_api_init', function(){
-  register_rest_field('page', 'has_children', 
+  register_rest_field('page', 'has_children',
     array(
-    'get_callback' => 'children_get_post_meta_cb', 
-    'update_callback' => 'children_update_post_meta_cb', 
+    'get_callback' => 'children_get_post_meta_cb',
+    'update_callback' => 'children_update_post_meta_cb',
     'schema' => null
     )
-  ); 
+  );
 });
 
 //THIS LETS US SEARCH BY has_children variables
@@ -272,7 +275,7 @@ add_filter( 'rest_page_query', function( $args, $request ) {
                 'value'   => $has_children,
                 'compare' => '=',
             )
-        );      
+        );
     }
 
     return $args;
@@ -294,3 +297,12 @@ function h5p_full_img_alter_styles(&$styles, $libraries, $embed_type) {
   );
 }
 add_action('h5p_alter_library_styles', 'h5p_full_img_alter_styles', 10, 3);
+
+//Add support for creation of static menu file
+function create_menu($post_id) {
+    global $wpdb;
+    $results = $wpdb->get_results( "SELECT `ID`, `post_title`, `post_parent`, `post_name`, `guid` FROM {$wpdb->prefix}posts WHERE post_type='page' and post_status = 'publish' ", ARRAY_A );
+    file_put_contents(get_stylesheet_directory(__FILE__) . 'results.json', json_encode($results));
+
+}
+add_action('save_post', 'create_menu');
