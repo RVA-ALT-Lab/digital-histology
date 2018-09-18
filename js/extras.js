@@ -1,22 +1,26 @@
 (function($) {
 
   $('.button').first().addClass('active');
-
   $('.button').click(function(){
     var $this = $(this);
     $siblings = $this.parent().children(),
-    console.log($siblings);
+    //console.log($siblings);
     position = $siblings.index($this)+1;
-    console.log (position);
-    
+    //console.log (position);
     $('.subcontent div').removeClass('active').eq(position).addClass('active');
     
     $siblings.removeClass('active');
-    $this.addClass('active');
+    $this.addClass('active');     
   })
 
 })(jQuery);
 
+
+ 
+
+//rewrite primary link on menu
+ var mainSlide = document.getElementById('slide-button-0');
+   mainSlide.setAttribute('href', window.location.href);
 
 //main index interactions
 
@@ -41,18 +45,6 @@ for (var i =0; i < buttons.length; i++){
 }
 
 
-/*full size h5p images
-
-if (document.getElementById('h5p-iframe-11')){
-  var iframe = document.getElementById('h5p-iframe-11');
-  console.log(iframe);
-  var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-   console.log(innerDoc.getElementsByClassName('h5p-question-image-scalable'));
-}
-
-var jquery = jQuery('#h5p-iframe-11').contents().find.('div').('h5p-question-image-scalable');
-jquery.classList.add('h5p-question-image-fill-width');
-*/
 
 function leftArrowPressed() {
    var url = document.getElementById('nav-arrow-left').parentElement.href;

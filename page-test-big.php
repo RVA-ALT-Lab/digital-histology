@@ -78,7 +78,11 @@ Template Name: Histology Page
 								 $length = count($menu);
 								 $i = 0;
 								 while ( $i < $length){
-								 	echo '<a href="#" class="button" id="slide-button-'.$i.' data-id="'.$i.'">' .$menu[$i] . '</a>';
+								 	if ($i === 0){
+									 	echo '<a href="" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 } else {
+									 	echo '<a href="#" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 }
 								 	$i++;
 								 }
 
