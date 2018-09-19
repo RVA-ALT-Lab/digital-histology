@@ -79,6 +79,7 @@ Template Name: Histology Page
 								 $i = 0;
 								 while ( $i < $length){
 								 	if ($i === 0){
+								 		//no # for first one
 									 	echo '<a href="" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 } else {
 									 	echo '<a href="#" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
@@ -96,17 +97,18 @@ Template Name: Histology Page
 						<?php if( have_rows('histo_slide')) {
 									 getPrevNext(); 
 							} else {
-								echo '<div class="cell-topics-list"><ul>';
-									$post_id = get_the_ID();
-									$ancestor_id = get_ancestors($post_id,'page', 'post_type')[0];
-									wp_list_pages( array(
-										'title_li'    => '',
-										'child_of'    => $ancestor_id,
-										'post_status' => 'publish',
-										'sort_column' => 'post_date', 										
-										) 
-								);
-								echo '</ul>';
+								// echo '<div class="cell-topics-list"><ul>';
+								// 	$post_id = get_the_ID();
+								// 	$ancestor_id = get_ancestors($post_id,'page', 'post_type')[0];
+								// 	wp_list_pages( array(
+								// 		'title_li'    => '',
+								// 		'child_of'    => $ancestor_id,
+								// 		'post_status' => 'publish',
+								// 		'sort_column' => 'post_date', 										
+								// 		) 
+								// );
+								// echo '</ul>';
+								make_nav_list();
 						} ?>										
 
 					</section> <!-- end article section -->

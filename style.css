@@ -197,7 +197,7 @@ a.navbar-brand:hover {
 }
 
 /*
-category list plugin styling 
+category list plugin styling
 */
 .listing-item {
     display: inline-block;
@@ -255,9 +255,9 @@ h1.slide-title, .slide-title {
 .nav-arrow {
   margin-top: 4px;
   padding: 2px;
-  border-top: 1px solid rgb(226, 226, 226);  
+  border-top: 1px solid rgb(226, 226, 226);
   background-color: #efefef;
-  text-align: center; 
+  text-align: center;
   transition: .2s;
 }
 
@@ -494,17 +494,24 @@ i {
     margin-bottom: 5px;
 }
 
+#app h2 {
+  display: inline-block;
+  background-color: #bfbfbf;
+  width: 300px;
+}
+
+#hist-menu ul,
 .cell-main-index ul,
 .cell-main-index ul li,
 .cell-main-index ul ul {
-  list-style: none;
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
 .cell-main-index ul {
   position: relative;
   z-index: 597;
-  float: left;  
+  float: left;
 }
 .cell-main-index ul li {
   float: left;
@@ -582,7 +589,7 @@ i {
 .cell-main-index ul ul {
   width: 200px;
 }
-.cell-main-index > ul > li > a {
+.cell-main-index > ul > li > div > a {
   border-right: 4px solid #fbb731;
   color: #fff;
 }
@@ -631,7 +638,7 @@ i {
 }
 
 .cell-main-index ul .active {
-    visibility: visible; 
+    visibility: visible;
     background-color: #424242;
 }
 
@@ -687,6 +694,13 @@ i {
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
+}
+
+#hist-menu {
+  background-image: url(./imgs/front_bg.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 @media (max-width: 978px) {

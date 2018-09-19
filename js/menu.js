@@ -3,9 +3,35 @@ var app = new Vue({
     data: {
         tree: []
     },
+    computed: {
+        annotatedTree: function () {
+            return this.hasAnyGrandchildren(this.tree)
+        }
+    },
     methods: {
+        hasAnyGrandchildren: function (tree) {
+            let newTree = []
+            let length = tree.length
+
+            for (let i = 0; i < length; i++) {
+                const node = tree[i]
+                let hasGrandchildren = false
+                if (node.children){
+                  let children = this.hasAnyGrandchildren(node.children)
+                  children.forEach(child => {
+                        if (child.children && child.children.length > 0) {
+                            hasGrandchildren = true
+                        }
+                    })
+                }
+                node.hasGrandchildren = hasGrandchildren
+                newTree.push(node)
+
+            }
+            return newTree
+        },
         createTree: function () {
-            fetch('./results.json')
+            fetch('https://rampages.us/wp-content/themes/histology/results.json')
             .then(result => {
                 result.json().then(json => {
 
@@ -30,24 +56,29 @@ var app = new Vue({
                     }
 
                     const completeTree = parseTree(json, "0")
-                    this.tree = completeTree
-                    console.log(completeTree)
+                    const annotatedTree = this.hasAnyGrandchildren(completeTree)
+                    this.tree = annotatedTree
+                    console.log(annotatedTree)
                 })
             })
         }
     },
     mounted: function () {
         this.createTree()
+        console.log(this.annotatedTree)
     }
 })
 
 Vue.component('child-component', {
     template : `<li>
-            <div v-if="child.children">
-                <a v-if="child.children[0].children" v-bind:href="child.guid">{{child.post_title}}</a>
-                <a v-if="!child.children[0].children" v-bind:href="child.children[0].guid">{{child.post_title}}</a>
+            <div v-if="!child.children">
+                <a v-bind:href="child.guid">{{child.post_title}}</a>
             </div>
-            <ul v-if="child.children && child.children[0].children">
+            <div v-if="child.children">
+                <a v-if="child.hasGrandchildren" v-bind:href="child.guid">{{child.post_title}}</a>
+                <a v-if="!child.hasGrandchildren" v-bind:href="child.children[0].guid">{{child.post_title}}</a>
+            </div>
+            <ul v-if="child.children && child.hasGrandchildren">
                 <child-component v-for="grandchild in child.children" :key="grandchild.ID" :child="grandchild">
                 </child-component>
             </ul>

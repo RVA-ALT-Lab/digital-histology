@@ -19,8 +19,12 @@
  
 
 //rewrite primary link on menu
- var mainSlide = document.getElementById('slide-button-0');
-   mainSlide.setAttribute('href', window.location.href);
+
+jQuery( document ).ready(function() {
+    var mainSlide = document.getElementById('slide-button-0');
+    mainSlide.setAttribute('href', window.location.href);
+});
+ 
 
 //main index interactions
 
@@ -29,7 +33,7 @@ jQuery(".cell-main-index li:has(ul) > a").click(function (e) {
   jQuery("#hist-menu>ul").removeClass('active');
   jQuery(this).toggleClass('active');
   jQuery(this).parent().children('ul').toggleClass('active');
-  console.log( 'parent- ' + jQuery("hist-menu>ul").eq(0));
+  //console.log( 'parent- ' + jQuery("hist-menu>ul").eq(0));
 });
 
 

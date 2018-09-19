@@ -39,7 +39,7 @@ if(!function_exists('load_my_script')){
         wp_enqueue_script('my-script', get_stylesheet_directory_uri() . '/js/extras.js', $deps, $version, $in_footer);
         wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
         wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);
-        }
+    }
 }
 
 add_action('wp_enqueue_scripts', 'load_my_script');
@@ -299,10 +299,26 @@ function h5p_full_img_alter_styles(&$styles, $libraries, $embed_type) {
 add_action('h5p_alter_library_styles', 'h5p_full_img_alter_styles', 10, 3);
 
 //Add support for creation of static menu file
-function create_menu($post_id) {
+function histology_create_menu($post_id) {
     global $wpdb;
-    $results = $wpdb->get_results( "SELECT `ID`, `post_title`, `post_parent`, `post_name`, `guid` FROM {$wpdb->prefix}posts WHERE post_type='page' and post_status = 'publish' ", ARRAY_A );
-    file_put_contents(get_stylesheet_directory(__FILE__) . 'results.json', json_encode($results));
+    $results = $wpdb->get_results( "SELECT `ID`, `post_title`, `post_parent`, `post_name` FROM {$wpdb->prefix}posts WHERE post_type='page' and post_status = 'publish' ", ARRAY_A );
+    foreach($results as &$result){
+        $result['guid'] = 'https://rampages.us/histology/?page_id=' . $result['ID'];
+    }
+    file_put_contents(get_stylesheet_directory() . '/results.json', json_encode($results));
 
 }
-add_action('save_post', 'create_menu');
+add_action('save_post', 'histology_create_menu');
+
+
+
+//new minor index page list maker
+
+function make_nav_list(){
+    global $post;
+        wp_list_pages(array(
+        'child_of' => $post->ID,
+        'title_li' => '',
+        'sort_column' => 'post_date',
+    ));
+}

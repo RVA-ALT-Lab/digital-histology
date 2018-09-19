@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Main Index for Histology
+Template Name: Static Menu
 */
 ?>
 
@@ -23,18 +23,18 @@ Template Name: Main Index for Histology
 						</header> <!-- end article header -->
 						<section class="post-content">
 						<div class="hist-slides">
-							<div class="subcontent col-md-10">
-								<div class="active"><?php the_content(); ?></div>
 						<!--SUB PAGES MENU-->
-						<div id="hist-menu" class="col-md-4">
+						<div id="hist-menu" class="col-md-12 offset-5">
 						<div id="app">
                             <ul>
-                                <li v-for="node in tree" :key="node.ID">
-                                    <h3>{{node.post_title}}</h3>
-                                    <ul v-if="node.children">
-                                        <child-component v-for="child in node.children" :child="child" :key="child.ID">
-                                        </child-component>
-                                    </ul>
+                                <li v-for="node in tree" v-if="node.children" :key="node.ID">
+                                    <h2>{{node.post_title}}</h2>
+                                    <div class="cell-main-index">
+                                        <ul v-if="node.children">
+                                            <child-component v-for="child in node.children" :child="child" :key="child.ID">
+                                            </child-component>
+                                        </ul>
+                                    </div>
 
                                 </li>
                             </ul>
