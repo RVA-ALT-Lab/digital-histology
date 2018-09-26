@@ -75,7 +75,7 @@ Vue.component('child-component', {
                 <a v-bind:href="child.guid">{{child.post_title}}</a>
             </div>
             <div v-if="child.children">
-                <a v-if="child.hasGrandchildren" v-bind:href="child.guid">{{child.post_title}}</a>
+                <a v-if="child.hasGrandchildren" v-bind:href="child.guid">{{child.post_title}}<i class="fa fa-arrow-right"></i></a>
                 <a v-if="!child.hasGrandchildren" v-bind:href="child.children[0].guid">{{child.post_title}}</a>
             </div>
             <ul v-if="child.children && child.hasGrandchildren">
