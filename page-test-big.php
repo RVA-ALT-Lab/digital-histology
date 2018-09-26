@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Histology Page
+Template Name: Histology Item Page
 */
 ?>
 

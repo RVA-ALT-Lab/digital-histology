@@ -31,7 +31,7 @@ var app = new Vue({
             return newTree
         },
         createTree: function () {
-            fetch('https://rampages.us/wp-content/themes/histology/results.json')
+            fetch( histology_directory.data_directory+'/results.json')
             .then(result => {
                 result.json().then(json => {
 

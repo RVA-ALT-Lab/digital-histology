@@ -39,10 +39,17 @@ if(!function_exists('load_my_script')){
         wp_enqueue_script('my-script', get_stylesheet_directory_uri() . '/js/extras.js', $deps, $version, $in_footer);
         wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
         wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);
+        
+        $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
+        wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
     }
 }
 
 add_action('wp_enqueue_scripts', 'load_my_script');
+
+
+
+
 
 // Load Font Awesome
 add_action( 'wp_enqueue_scripts', 'enqueue_font_awesome' );
