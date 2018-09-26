@@ -43,13 +43,13 @@ Template Name: Histology Page
 									?>
 									
 									<?php while( have_rows('histo_slide') ): the_row(); 
-										// vars
+										// vars								
 										$image = get_sub_field('slide_url');
 										$content = get_sub_field('slide_text');
 										$title = get_sub_field('slide_title');
 										//$contentTrue = subTrue('slide_text');
 										$count = $count+1;
-										if ($title != ' '){
+										if ($title != ' ' && strlen($title) != 0){
 											array_push($menu,$title.$contentTrue);
 										}
 									?>
@@ -108,7 +108,9 @@ Template Name: Histology Page
 								// 		) 
 								// );
 								// echo '</ul>';
+								echo '<ul>';
 								make_nav_list();
+								echo '</ul>';
 						} ?>										
 
 					</section> <!-- end article section -->
