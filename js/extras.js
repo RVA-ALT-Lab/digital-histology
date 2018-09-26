@@ -21,14 +21,16 @@
 //rewrite primary link on menu
 
 jQuery( document ).ready(function() {
+  if (document.getElementById('slide-button-0')){
     var mainSlide = document.getElementById('slide-button-0');
     mainSlide.setAttribute('href', window.location.href);
+  }
 });
  
 
 //main index interactions
 
-jQuery(".cell-main-index li:has(ul) > a").click(function (e) {
+jQuery("#app li:has(ul) > a").click(function (e) {
   e.preventDefault(); 
   jQuery("#hist-menu>ul").removeClass('active');
   jQuery(this).toggleClass('active');
@@ -36,6 +38,7 @@ jQuery(".cell-main-index li:has(ul) > a").click(function (e) {
   //console.log( 'parent- ' + jQuery("hist-menu>ul").eq(0));
 });
 
+console.log(jQuery("#app li:has(ul) > a"));
 
 //indent buttons that lead with a hyphen 
 
