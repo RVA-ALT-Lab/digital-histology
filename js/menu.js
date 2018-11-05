@@ -58,26 +58,22 @@ var app = new Vue({
                     const completeTree = parseTree(json, "0")
                     const annotatedTree = this.hasAnyGrandchildren(completeTree)
                     this.tree = annotatedTree
-                    //console.log(annotatedTree)
+                    console.log(annotatedTree)
                 })
             })
         }
     },
     mounted: function () {
         this.createTree()
-        //console.log(this.annotatedTree)
+        console.log(this.annotatedTree)
     }
 })
 
 Vue.component('child-component', {
     template : `<li>
-            <template v-if="!child.children">
-                <a v-bind:href="child.guid">{{child.post_title}}</a>
-            </template>
-            <template v-if="child.children">
-                <a class="childbearing" v-if="child.hasGrandchildren" v-bind:href="child.guid">{{child.post_title}}<i class="fa fa-arrow-right"></i></a>
+                <a v-if="!child.children" v-bind:href="child.guid">{{child.post_title}}</a>
+                <a v-if="child.children" class="childbearing" v-if="child.hasGrandchildren" v-bind:href="child.guid" v-bind:id="child.post_name+child.ID">{{child.post_title}}<i class="fa fa-arrow-right"></i></a>
                 <a v-if="!child.hasGrandchildren" v-bind:href="child.children[0].guid">{{child.post_title}}</a>
-            </template>
             <ul v-if="child.children && child.hasGrandchildren">
                 <child-component v-for="grandchild in child.children" :key="grandchild.ID" :child="grandchild">
                 </child-component>
