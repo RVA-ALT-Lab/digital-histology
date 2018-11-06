@@ -71,7 +71,7 @@ var app = new Vue({
 
 Vue.component('child-component', {
     template : `<li>
-                <a v-if="!child.children" v-bind:href="child.guid">{{child.post_title}}</a>
+                <a v-if="!child.children" v-bind:href="child.guid" v-bind:id="child.post_name+child.ID">{{child.post_title}}</a>
                 <a v-if="child.children" class="childbearing" v-if="child.hasGrandchildren" v-bind:href="child.guid" v-bind:id="child.post_name+child.ID">{{child.post_title}}<i class="fa fa-arrow-right"></i></a>
                 <a v-if="!child.hasGrandchildren" v-bind:href="child.children[0].guid">{{child.post_title}}</a>
             <ul v-if="child.children && child.hasGrandchildren">

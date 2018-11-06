@@ -1,12 +1,12 @@
 <?php
 /*
-Template Name: Static Main Menu
+Template Name: Static Menu
 */
 ?>
 
 <?php get_header(); ?>
 
-			<div id="content" class="clearfix row">
+			<div id="content" class="clearfix row" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full') ;?>)">
 
 				<div id="main" class="col col-lg-12 clearfix" role="main">
 
@@ -17,7 +17,7 @@ Template Name: Static Main Menu
 						<header>
 
 							<!--<div class="page-header"><h1><?php the_title(); ?></h1></div>
-													<?php echo custom_breadcrumbs(); ?>-->
+							<?php echo custom_breadcrumbs(); ?>-->
 
 
 						</header> <!-- end article header -->
