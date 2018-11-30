@@ -57,13 +57,14 @@ function createTree () {
 function publishTree(tree){
     var menu = ''
     tree.forEach(function(item){
-    console.log(item)
+    console.log(item)   
       if ( item.hasGrandchildren === true) {
             menu = menu.concat('<li><h2>' + item.post_title) + '</h2>'
             menu = menu.concat('<div class="cell-main-index">')
               menu = menu.concat(makeLimb(item.children, 'childbearing top'))
         menu.concat('</li>')  
         menu = menu.concat('</div>')
+        limbMenu = ''
         }
         
     })
