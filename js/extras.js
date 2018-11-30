@@ -21,24 +21,44 @@
 //rewrite primary link on menu
 
 jQuery( document ).ready(function() {
-  if (document.getElementById('slide-button-0')){
     var mainSlide = document.getElementById('slide-button-0');
-    mainSlide.setAttribute('href', window.location.href);
-  }
+    if (mainSlide){
+     mainSlide.setAttribute('href', window.location.href);
+    }
 });
  
 
 //main index interactions
 
-jQuery("#app li:has(ul) > a").click(function (e) {
+jQuery('.childbearing').click(function(e) {
   e.preventDefault(); 
-  jQuery("#hist-menu>ul").removeClass('active');
-  jQuery(this).toggleClass('active');
+  jQuery('.active').removeClass('active');
   jQuery(this).parent().children('ul').toggleClass('active');
-  //console.log( 'parent- ' + jQuery("hist-menu>ul").eq(0));
+  jQuery(this).parentsUntil('.cell-main-index').addClass('active');
+
 });
 
-console.log(jQuery("#app li:has(ul) > a"));
+
+checkUrl();
+
+function checkUrl(){
+  var id = getQueryVariable("menu");
+  if (id){
+    jQuery('#'+id).parent().children('ul').addClass('active');
+  }
+  console.log('running url check');
+}
+//from https://css-tricks.com/snippets/javascript/get-url-variables/
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
 
 //indent buttons that lead with a hyphen 
 

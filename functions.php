@@ -36,16 +36,27 @@ if(!function_exists('load_my_script')){
         $deps = array('jquery');
         $version= '1.0';
         $in_footer = true;
-        wp_enqueue_script('my-script', get_stylesheet_directory_uri() . '/js/extras.js', $deps, $version, $in_footer);
         wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
-        wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);
-        
+        wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);        
         $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
         wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
     }
 }
 
 add_action('wp_enqueue_scripts', 'load_my_script');
+
+
+if(!function_exists('hist_script')){
+    function hist_script() {
+        global $post;
+        $version= '1.2';
+        $in_footer = true;
+        wp_enqueue_script('histology-script', get_stylesheet_directory_uri() . '/js/extras.js', array('jquery', 'menu-js','vue-js'), $version, $in_footer);
+    }
+}
+
+add_action('wp_enqueue_scripts', 'hist_script');
+
 
 
 
@@ -150,7 +161,7 @@ function getPrevNext(){
             echo '" ';
             echo 'title="';
             echo get_the_title($prevID);
-            echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-left"><img src="'.get_stylesheet_directory_uri().'/imgs/arrow_left_ai.svg" alt="Left arrow."> PREV';
+            echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-left"><img src="'.get_stylesheet_directory_uri().'/imgs/arrow_left_ai.svg" alt="Left arrow."> PREVIOUS';
             echo '</div>';
             echo '</a>';
         }

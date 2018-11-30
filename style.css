@@ -1,5 +1,5 @@
 /*
- Theme Name:   Histology OER Site
+ Theme Name:   Histology What?
  Theme URI:    http://
  Description:  WP-Bootstrap Child Theme for something or another
  Author:       Tom Woodward
@@ -45,6 +45,10 @@ header {
     background-color: #bfbfbf; /*was #efefef*/
     color: #262626;
     font-family: "Roboto", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .page-header {
@@ -249,7 +253,7 @@ h1.slide-title, .slide-title {
 }
 .navigation {
     margin-top: -34px;
-    margin-left: 10px;
+    margin-left: 0;
 }
 
 .nav-arrow {
@@ -327,7 +331,10 @@ a.active {
 .hist-slides {
     width: 100%;
     display: inline-block;
-    margin-left: 10px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .subcontent {
     margin-top: 10px;
@@ -494,10 +501,15 @@ i {
     margin-bottom: 5px;
 }
 
+.cell-main-index ul li a .fa {
+  float:right;
+}
+
 #app h2 {
   display: inline-block;
   background-color: #bfbfbf;
   width: 300px;
+  padding: 5px 10px;
 }
 
 #hist-menu ul,
@@ -697,7 +709,7 @@ i {
 }
 
 #hist-menu {
-  background-image: url(./imgs/front_bg.jpg);
+  
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
