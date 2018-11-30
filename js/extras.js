@@ -39,26 +39,6 @@ jQuery('.childbearing').click(function(e) {
 });
 
 
-checkUrl();
-
-function checkUrl(){
-  var id = getQueryVariable("menu");
-  if (id){
-    jQuery('#'+id).parent().children('ul').addClass('active');
-  }
-  console.log('running url check');
-}
-//from https://css-tricks.com/snippets/javascript/get-url-variables/
-function getQueryVariable(variable)
-{
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
-}
 
 //indent buttons that lead with a hyphen 
 

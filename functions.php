@@ -86,7 +86,7 @@ function custom_breadcrumbs(){
                 if ( !isset( $parents ) ) $parents = null;
                 $parents .= '<span class="item-parent"><a class="bread-parent" href="/histology">Main Menu</a> &#187; </span> ';
                 foreach ( $anc as $ancestor ) {
-                    $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
+                    $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . site_url() .'?menu=menu_' . $ancestor . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
                     $parents .= '<span class="separator separator-' . $ancestor . '"> &#187; </span>';
                 }
 

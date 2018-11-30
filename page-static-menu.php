@@ -27,7 +27,7 @@ Template Name: Static Menu
 						<div id="hist-menu" class="col-md-12 offset-5">
 						<div id="app">
                             <ul>
-                                <li v-for="node in tree" v-if="node.children" :key="node.ID">
+                                <!-- <li v-for="node in tree" v-if="node.children" :key="node.ID">
                                     <h2>{{node.post_title}}</h2>
                                     <div class="cell-main-index">
                                         <ul v-if="node.children">
@@ -36,7 +36,7 @@ Template Name: Static Menu
                                         </ul>
                                     </div>
 
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 

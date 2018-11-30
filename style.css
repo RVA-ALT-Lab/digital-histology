@@ -161,6 +161,10 @@ a.navbar-brand:hover {
     background-position: right 30px top;
 }
 
+.cell-main-index a:hover {
+  background-color: #0082e7;
+}
+
 @media (max-width: 979px) {
     .navbar-bright .dropdown-menu li > a {
         color: #fff;
@@ -179,6 +183,8 @@ a.navbar-brand:hover {
 .navbar-bright .dropdown-menu>li>a:hover {
     color: #eee;
 }
+
+
 
 @media (min-width: 979px) {
     #sidebar.affix-top {
@@ -328,6 +334,11 @@ a.active {
     background-color: #424242;
     color: #fff;
 }
+
+.active {
+  display: block;
+}
+
 .hist-slides {
     width: 100%;
     display: inline-block;
@@ -510,6 +521,7 @@ i {
   background-color: #bfbfbf;
   width: 300px;
   padding: 5px 10px;
+  margin-bottom: 0;
 }
 
 #hist-menu ul,
@@ -533,12 +545,12 @@ i {
   position: relative;
   border-bottom: 1px solid #636669;
 }
-.cell-main-index ul li.hover,
-.cell-main-index ul li:hover {
+
+/*.cell-main-index ul li:hover {
   position: relative;
   z-index: 599;
   cursor: default;
-}
+}*/
 .cell-main-index ul ul {
   visibility: hidden;
   position: absolute;
@@ -556,9 +568,9 @@ i {
   top: -3px;
   right: 0;
 }
-.cell-main-index ul li:hover > ul {
+/*.cell-main-index ul li:hover > ul {
   visibility: visible;
-}
+}*/
 .cell-main-index ul ul {
   top: 1px;
   left: 99%;
@@ -605,13 +617,13 @@ i {
   border-right: 4px solid #fbb731;
   color: #fff;
 }
-.cell-main-index > ul > li > a:hover, .cell-main-index > ul > li >  a.active  {
+/*.cell-main-index > ul > li > a:hover, */.cell-main-index > ul > li >  a.active  {
   color: #fff;
 }
 .cell-main-index > ul > li a.active  {
   background: #424242;
 }
-.cell-main-index > ul > li a:hover, .cell-main-index > ul > li a.active  ,
+/*.cell-main-index > ul > li a:hover*/, .cell-main-index > ul > li a.active  ,
 .cell-main-index > ul > li:hover a, .cell-main-index > ul > li.active a {
   background: #424242;
 }
@@ -654,13 +666,13 @@ i {
     background-color: #424242;
 }
 
-.cell-main-index ul ul a:hover, .cell-main-index ul ul a.active  {
+/*.cell-main-index ul ul a:hover*/, .cell-main-index ul ul a.active  {
   color: #fff;
 }
 .cell-main-index ul ul li {
   border-bottom: 1px solid #0082e7;
 }
-.cell-main-index ul ul li:hover > a, .cell-main-index ul ul li  > a.active {
+/*.cell-main-index ul ul li:hover > a*/, .cell-main-index ul ul li  > a.active {
   background: #4eb1ff;
   color: #fff;
 }
