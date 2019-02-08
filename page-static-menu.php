@@ -6,7 +6,7 @@ Template Name: Static Menu
 
 <?php get_header(); ?>
 
-			<div id="content" class="clearfix row" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(),'full') ;?>)">
+			<div id="content" class="clearfix row" style="background-image: url(<?php echo randomHomeBackground() ;?>)">
 
 				<div id="main" class="col col-lg-12 clearfix" role="main">
 
@@ -38,6 +38,7 @@ Template Name: Static Menu
 
                                 </li> -->
                             </ul>
+                            	<h2 id="quizzes"><a href="https://rampages.us/histology/quizzes/">Quizzes</a></h2>
                         </div>
 
 						</div>

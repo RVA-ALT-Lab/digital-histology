@@ -3,7 +3,7 @@ function theme_enqueue_styles() {
 
     $parent_style = 'parent-style';
 
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css', array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
     wp_enqueue_style( 'child-style',
         get_stylesheet_directory_uri() . '/style.css',
         array( $parent_style )
@@ -339,4 +339,12 @@ function make_nav_list(){
         'title_li' => '',
         'sort_column' => 'post_date',
     ));
+}
+
+function randomHomeBackground(){
+    $rows = get_field('background' ); // get all the rows
+    $rand_row = $rows[ array_rand( $rows ) ]; // get a random row
+    $rand_row_image = $rand_row['background_image' ]; // get the sub field value 
+
+    return $rand_row_image;
 }

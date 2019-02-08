@@ -42,7 +42,7 @@ header {
 
 #content {
     border: 2px solid #424242;
-    background-color: #bfbfbf; /*was #efefef*/
+    background-color: #efefef;
     color: #262626;
     font-family: "Roboto", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
      -webkit-background-size: cover;
@@ -519,9 +519,16 @@ i {
 #app h2 {
   display: inline-block;
   background-color: #bfbfbf;
-  width: 300px;
+  width: 210px;
   padding: 5px 10px;
   margin-bottom: 0;
+  font-size: 1.2em;
+  border-radius: 0px 10px 10px 0px;
+}
+
+#app h2 a {
+  width: 100%;
+  display: inline-block;
 }
 
 #hist-menu ul,
@@ -611,7 +618,7 @@ i {
   width: 200px;
 }
 .cell-main-index ul ul {
-  width: 200px;
+  width: 260px;
 }
 .cell-main-index > ul > li > div > a {
   border-right: 4px solid #fbb731;
@@ -657,7 +664,6 @@ i {
   border: 1px solid #0082e7;
 }
 .cell-main-index ul ul a {
-  font-size: 12px;
   color: #fff;
 }
 
@@ -725,6 +731,59 @@ i {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
+}
+
+#app h2#quizzes {
+  background-color: rgb(179, 198, 231);
+  color: #000;
+}
+
+#app h2#quizzes:hover {
+  background-color: rgb(141,169,219);
+  color: #000;
+}
+
+.page-header {display:none;}
+
+.indent {margin-left: 1em}
+
+#quizzes-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+#quizzes-list ul li {
+    min-height: 1px;
+    line-height: 1em;
+    vertical-align: middle;
+    position: relative;
+    border-bottom: 1px solid #636669;
+    display: block;
+    padding: 7px 10px;
+    text-decoration: none;
+    width: 220px;
+    font-size: 1em;
+    background-color: #333;
+}
+
+#quizzes-list ul li:hover {
+  background-color: #0082e7;
+}
+
+#quizzes-list ul li a{
+  color: #fff;
+  width: 100%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
+
+#quizzes-list ul li a:hover {
+  background-color: #0082e7;
+  color: #fff;
 }
 
 @media (max-width: 978px) {

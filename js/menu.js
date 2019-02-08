@@ -71,6 +71,7 @@ function publishTree(tree){
      jQuery(menu).appendTo( "#app ul" );
      stunLinks()
      checkUrl()
+     specialAddition()
 }
 
 var limbMenu = ''
@@ -80,11 +81,11 @@ function makeLimb(data, type){
     limbMenu = limbMenu.concat('<ul>')
     data.forEach(function(item){
             if (item.hasGrandchildren === true){
-                limbMenu = limbMenu.concat('<li><a id="menu_' + item.ID + '" class="' + type +'" href="' + item.guid + '">' + item.post_title + ifParent(item.hasGrandchildren) + '</a>')
+                limbMenu = limbMenu.concat('<li><a id="menu_' + item.ID + '" class="' + type +'" href="' + item.guid + '">' + overviewClean(item.post_title) + ifParent(item.hasGrandchildren) + '</a>')
                 makeLimb(item.children, "childbearing")
                 limbMenu = limbMenu.concat('</li>')
             } if (item.children && !item.hasGrandchildren) {
-                limbMenu = limbMenu.concat('<li><a class="live" href="' + item.children[0].guid + '">' + item.post_title + '</a>')
+                limbMenu = limbMenu.concat('<li><a class="live" href="' + item.children[0].guid + '">' + overviewClean(item.post_title) + '</a>')
                 makeLimb(item.children, "live")
             } 
     })
@@ -105,6 +106,15 @@ function ifParent(kids){
 
 createTree();
 
+function overviewClean(title){
+  var regex = /overview/i;
+  var found = title.match(regex)
+  if (found === null){
+    return title
+  } else {
+    return title.substring(0, 8)
+  }
+}
 
 function stunLinks(){
     jQuery(".childbearing").click(function (e) {
@@ -138,4 +148,21 @@ function getQueryVariable(variable)
                if(pair[0] == variable){return pair[1];}
        }
        return(false);
+}
+
+
+function specialAddition(){
+  var exocrine = document.getElementById('menu_325')
+  var parent = exocrine.parentElement.parentElement
+
+  var node = document.createElement('li');                 // Create a <li> node
+  var a = document.createElement('a'); // Create a text node
+  a.setAttribute('href', 'https://rampages.us/histology/?menu=menu_212');
+  a.textContent = 'Endocrine ';
+  node.appendChild(a);                              // Append the text to <li>
+  parent.appendChild(node); 
+  a.innerHTML = a.innerHTML + '<i class="fa fa-arrow-right"></i>'
+  // var arrow = document.createElement('i')
+  // arrow.classList.add('fa', 'fa-arrow-right');
+  // node.appendChild(arrow);
 }
