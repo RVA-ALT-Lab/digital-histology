@@ -57,7 +57,7 @@ function createTree () {
 function publishTree(tree){
     var menu = ''
     tree.forEach(function(item){
-    console.log(item)   
+    //console.log(item)   
       if ( item.hasGrandchildren === true) {
             menu = menu.concat('<li><h2>' + item.post_title) + '</h2>'
             menu = menu.concat('<div class="cell-main-index">')
@@ -87,7 +87,11 @@ function makeLimb(data, type){
             } if (item.children && !item.hasGrandchildren) {
                 limbMenu = limbMenu.concat('<li><a class="live" href="' + item.children[0].guid + '">' + overviewClean(item.post_title) + '</a>')
                 makeLimb(item.children, "live")
-            } 
+            } //this is super ugly but this appears to be the only item that violates the pattern
+            if (item.post_title == "Overview of connective tissues"){
+              console.log(item.post_title + ' foo')
+              limbMenu = limbMenu.concat('<li><a class="live" href="' + item.guid + '">' + overviewClean(item.post_title) + '</a>')             
+            }
     })
     limbMenu = limbMenu.concat('</ul>') 
     return limbMenu
@@ -129,12 +133,12 @@ function stunLinks(){
 
 function checkUrl(){
   var id = getQueryVariable("menu");
-  console.log(id)
-  console.log('menu thing')
+  //console.log(id)
+  //console.log('menu thing')
   if (id){
      jQuery('#'+id).parent().children('ul').addClass('active');
-     console.log(jQuery('#'+id));
-     console.log('foo')
+     //console.log(jQuery('#'+id));
+     //console.log('foo')
      jQuery('#'+id).parents().addClass('active');
   }
 }
