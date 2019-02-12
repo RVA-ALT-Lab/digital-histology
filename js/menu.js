@@ -89,7 +89,7 @@ function makeLimb(data, type){
                 makeLimb(item.children, "live")
             } //this is super ugly but this appears to be the only item that violates the pattern
             if (item.post_title == "Overview of connective tissues"){
-              console.log(item.post_title + ' foo')
+              //console.log(item.post_title + ' foo')
               limbMenu = limbMenu.concat('<li><a class="live" href="' + item.guid + '">' + overviewClean(item.post_title) + '</a>')             
             }
     })
@@ -126,6 +126,7 @@ function stunLinks(){
       jQuery('.active').removeClass('active');
       jQuery(this).parent().children('ul').toggleClass('active');
       jQuery(this).parentsUntil('.cell-main-index').addClass('active');
+      updateURL(jQuery(this)["0"].id)
     });
 }
 
@@ -166,7 +167,14 @@ function specialAddition(){
   node.appendChild(a);                              // Append the text to <li>
   parent.appendChild(node); 
   a.innerHTML = a.innerHTML + '<i class="fa fa-arrow-right"></i>'
-  // var arrow = document.createElement('i')
-  // arrow.classList.add('fa', 'fa-arrow-right');
-  // node.appendChild(arrow);
+
 }
+
+
+//from https://eureka.ykyuen.info/2015/04/08/javascript-add-query-parameter-to-current-url-without-reload/
+function updateURL(id) {
+      if (history.pushState) {
+          var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?menu='+id;
+          window.history.pushState({path:newurl},'',newurl);
+      }
+    }
