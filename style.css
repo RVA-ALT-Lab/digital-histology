@@ -280,8 +280,8 @@ h1.slide-title, .slide-title {
     border: 2px solid #424242;
 }
 .navigation {
-    margin-top: -34px;
     margin-left: 0;
+    margin-top: -34px;
 }
 
 .nav-arrow {
@@ -802,11 +802,19 @@ i {
   margin-right: 10px;
 }
 
-
-
 #quizzes-list ul li a:hover {
   background-color: #0082e7;
   color: #fff;
+}
+
+/*hide and show*/
+#quizzer {
+  float: right;
+}
+
+.nope {
+  line-height: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 978px) {

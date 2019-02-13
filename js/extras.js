@@ -82,13 +82,16 @@ function hideSlideTitles(){
     var mainSlide = document.getElementById('slide-button-0'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
-
-      for (var i =0; i < buttons.length; i++){
+      var subslides = document.getElementsByClassName('sub-deep');
+      for (var i = 0; i < buttons.length; i++){
         var original = buttons[i].innerHTML;
         buttons[i].innerHTML = '<span class="hidden">' + original + '</span>* * *';        
         }
-        document.getElementById('the_slide_title').classList.add('hidden')
-        document.getElementById('the_slide_content').classList.add('hidden')
+      for (var i = 0; i < subslides.length; i++){
+            subslides[i].classList.add('nope')
+        }
+        document.getElementById('the_slide_title').classList.add('nope')
+        document.getElementById('the_slide_content').classList.add('nope')
         document.getElementById('quizzer').dataset.quizstate = 'hidden'
         document.getElementById('quizzer').innerHTML = 'Show'
     }
@@ -104,18 +107,17 @@ function showSlideTitles(){
         var hidden = buttons[i].firstChild.innerHTML;
           buttons[i].innerHTML = hidden;       
         }
-        document.getElementById('the_slide_title').classList.remove('hidden')
-        document.getElementById('the_slide_content').classList.remove('hidden')
+        document.getElementById('the_slide_title').classList.remove('nope')
+        document.getElementById('the_slide_content').classList.remove('nope')
         document.getElementById('quizzer').dataset.quizstate = 'visible'
         document.getElementById('quizzer').innerHTML = 'Hide'
+        var subslides = document.getElementsByClassName('sub-deep');
+        for (var i = 0; i < subslides.length; i++){
+            subslides[i].classList.remove('nope')
+        }
     }
 }
 
-function showHideButton(){
-  var mainButton = document.getElementById('slide-button-0')
-  var buttonText = mainButton.innerHTML
-  jQuery(mainButton).after('<button class="eyeball" id="quizzer">Hide</button>')
-}
 
 function setQuizState(){
   var state = document.getElementById('quizzer').dataset.quizstate
@@ -126,8 +128,19 @@ function setQuizState(){
   }
 }
 
-showHideButton();
-document.getElementById('quizzer').addEventListener("click", setQuizState);
+// function retainQuizState(){
+//   var state = document.getElementById('quizzer').dataset.quizstate
+//   if (state === 'hidden'){
+//     hideSlideTitles()
+//   } else if (state === 'visible'){
+//     showSlideTitles()
+//   }
+// }
+
+
+jQuery( document ).ready(function() {
+  document.getElementById('quizzer').addEventListener("click", setQuizState);
+});
 
 
 

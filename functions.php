@@ -95,7 +95,7 @@ function custom_breadcrumbs(){
 
                 // Current page
                 echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
-
+                echo '<button class="eyeball" id="quizzer">Hide</button>';
             } else {
 
                 // Just display current page if not parents

@@ -16,7 +16,7 @@ Template Name: Histology Page
 						
 						<header>
 							
-						<?php echo custom_breadcrumbs(); ?>
+						<?php echo custom_breadcrumbs(); ?> 
 							
 						</header> <!-- end article header -->
 						<section class="post-content row" aria-labelledby="the_slide_title">
@@ -56,7 +56,7 @@ Template Name: Histology Page
 									<div class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
 										<img src="<?php echo $image[url]; ?>" alt="<?php echo $title . ' ' . $content;?>">
 										<?php if( $title ): ?>											
-											<h3 class="slide-title">
+											<h3 class="slide-title sub-deep">
 												<?php echo $title; ?>
 											</h3>
 										<?php else: ?>
@@ -65,7 +65,7 @@ Template Name: Histology Page
 											</h3>
 										<?php endif; ?>		
 										<?php if( $content ): ?>								
-									    	<?php echo $content;?>
+									    	<span class="sub-deep"><?php echo $content;?></span>
 									    <?php else: ?>
 											<div class="slide-text"></div>
 										<?php endif;?>
