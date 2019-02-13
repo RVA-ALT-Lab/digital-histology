@@ -232,38 +232,38 @@ function main_slide_title($post_id){
 
 
 //sets a custom field to indicate if a page has children to save a call later
-add_action( 'save_post', 'has_child_meta' );
+// add_action( 'save_post', 'has_child_meta' );
 
-function has_child_meta(){
-    global $post;
-    $post_id = $post->ID;
-     if (get_post_type($post_id)==='page'){
-         $args = array(
-                'parent' => $post_id,
-                'post_type' => 'page',
-                'post_status' => 'publish',
-                'number' => 1, //we only need one
-            );
-         $pages = get_pages($args);
-         $number = sizeof($pages);
-        if ($number != 0 ) {
-            add_post_meta($post_id, 'has_children', 1, true);
-        } else {
-            add_post_meta($post_id, 'has_children', 0, true);
-        }
-    }
-}
+// function has_child_meta(){
+//     global $post;
+//     $post_id = $post->ID;
+//      if (get_post_type($post_id)==='page'){
+//          $args = array(
+//                 'parent' => $post_id,
+//                 'post_type' => 'page',
+//                 'post_status' => 'publish',
+//                 'number' => 1, //we only need one
+//             );
+//          $pages = get_pages($args);
+//          $number = sizeof($pages);
+//         if ($number != 0 ) {
+//             add_post_meta($post_id, 'has_children', 1, true);
+//         } else {
+//             add_post_meta($post_id, 'has_children', 0, true);
+//         }
+//     }
+// }
 
-add_action( 'save_post', 'has_child_meta_to_parent' );
-function has_child_meta_to_parent(){
-    global $post;
-    $parent = $post->post_parent;
-        if ($parent != 0 ) {
-            add_post_meta($parent, 'has_children', 1, true);
-        } else {
-            add_post_meta($parent, 'has_children', 0, true);
-        }
-    }
+// add_action( 'save_post', 'has_child_meta_to_parent' );
+// function has_child_meta_to_parent(){
+//     global $post;
+//     $parent = $post->post_parent;
+//         if ($parent != 0 ) {
+//             add_post_meta($parent, 'has_children', 1, true);
+//         } else {
+//             add_post_meta($parent, 'has_children', 0, true);
+//         }
+//     }
 
 //PUTS has_children INTO THE API
 function children_get_post_meta_cb($object, $field_name, $request){

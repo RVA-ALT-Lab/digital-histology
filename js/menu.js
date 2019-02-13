@@ -157,16 +157,18 @@ function getQueryVariable(variable)
 
 
 function specialAddition(){
-  var exocrine = document.getElementById('menu_325')
-  var parent = exocrine.parentElement.parentElement
+  if (document.getElementById('menu_325')){
+    var exocrine = document.getElementById('menu_325')
+    var parent = exocrine.parentElement.parentElement
 
-  var node = document.createElement('li');                 // Create a <li> node
-  var a = document.createElement('a'); // Create a text node
-  a.setAttribute('href', 'https://rampages.us/histology/?menu=menu_212');
-  a.textContent = 'Endocrine ';
-  node.appendChild(a);                              // Append the text to <li>
-  parent.appendChild(node); 
-  a.innerHTML = a.innerHTML + '<i class="fa fa-arrow-right"></i>'
+    var node = document.createElement('li');                 // Create a <li> node
+    var a = document.createElement('a'); // Create a text node
+    a.setAttribute('href', 'https://rampages.us/histology/?menu=menu_212');
+    a.textContent = 'Endocrine ';
+    node.appendChild(a);                              // Append the text to <li>
+    parent.appendChild(node); 
+    a.innerHTML = a.innerHTML + '<i class="fa fa-arrow-right"></i>'
+  }
 
 }
 

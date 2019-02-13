@@ -120,6 +120,28 @@ header {
     border-color: #f8f8f8;
 }
 
+.btn-primary {
+  border-radius: 2em;
+}
+
+
+#searchform{
+    display: inline-block;
+    height: 40px;
+    width: 300px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#searchsubmit {
+  color: #000;
+  background-color: #bfbfbf;
+}
+
+#searchsubmit:hover {
+  background-color: #0082e7;
+  color: #fff;
+} 
 
 /*navbar*/
 
@@ -524,6 +546,7 @@ i {
   margin-bottom: 0;
   font-size: 1.2em;
   border-radius: 0px 10px 10px 0px;
+  font-weight: 700;
 }
 
 #app h2 a {
@@ -789,5 +812,44 @@ i {
 @media (max-width: 978px) {
     .hist-slides {
         margin-left: 0;
+    }
+}
+
+
+@media (max-width: 766px) {
+    .navbar-bright .container {
+      background-image: none;
+    }
+    
+    .icon-bar {
+      border-bottom: 2px solid #fff;
+    }
+
+    a.navbar-brand {
+      font-size: 1.8em;
+    }
+
+    .navbar-toggle {
+      float:none;
+    }
+
+    .post-content {
+      margin-top: 50px;
+    }
+
+    .subslide p {
+      height: auto;
+    }
+
+    a.button {
+      width: auto;
+    }
+
+    #main-article {
+      margin-top: 50px;
+    }
+
+    .navigation {
+      margin-top: 10px;
     }
 }
