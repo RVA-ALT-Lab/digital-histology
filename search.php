@@ -2,7 +2,7 @@
 			
 			<div id="content" class="clearfix row">
 			
-				<div id="main" class="col col-lg-8 clearfix" role="main">
+				<div id="main" class="col col-lg-10 clearfix" role="main">
 				
 					<div class="page-header"><h1><span><?php _e("Search Results for","wpbootstrap"); ?>:</span> <?php echo esc_attr(get_search_query()); ?></h1></div>
 
@@ -12,9 +12,8 @@
 						
 						<header>
 							
-							<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+							<h2 class="search-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 												
-						
 						</header> <!-- end article header -->
 					
 						<section class="post_content">
@@ -62,9 +61,7 @@
 					<?php endif; ?>
 			
 				</div> <!-- end #main -->
-    			
-    			<?php get_sidebar(); // sidebar 1 ?>
-    
+    			    
 			</div> <!-- end #content -->
 
 <?php get_footer(); ?>

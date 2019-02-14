@@ -817,6 +817,17 @@ i {
   visibility: hidden;
 }
 
+
+/*SEARCH PAGE*/
+
+.search .post_content {
+  margin-left: 10px;
+}
+
+.search article {
+  background-color: #fff;
+}
+
 @media (max-width: 978px) {
     .hist-slides {
         margin-left: 0;
