@@ -50,7 +50,7 @@ Template Name: Histology Page
 										//$contentTrue = subTrue('slide_text');
 										$count = $count+1;
 										if ($title != ' ' && strlen($title) != 0){
-											array_push($menu,$title.$contentTrue);
+											array_push($menu,$title);
 										}
 									?>
 									<div class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
@@ -96,18 +96,7 @@ Template Name: Histology Page
 						<!--SUB PAGES MENU-->
 						<?php if( have_rows('histo_slide')) {
 									 getPrevNext(); 
-							} else {
-								// echo '<div class="cell-topics-list"><ul>';
-								// 	$post_id = get_the_ID();
-								// 	$ancestor_id = get_ancestors($post_id,'page', 'post_type')[0];
-								// 	wp_list_pages( array(
-								// 		'title_li'    => '',
-								// 		'child_of'    => $ancestor_id,
-								// 		'post_status' => 'publish',
-								// 		'sort_column' => 'post_date', 										
-								// 		) 
-								// );
-								// echo '</ul>';
+							} else {								
 								echo '<ul>';
 								make_nav_list();
 								echo '</ul>';

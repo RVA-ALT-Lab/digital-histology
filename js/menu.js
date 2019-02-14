@@ -172,7 +172,7 @@ function specialAddition(){
 
 }
 
-
+//make url change per menu change
 //from https://eureka.ykyuen.info/2015/04/08/javascript-add-query-parameter-to-current-url-without-reload/
 function updateURL(id) {
       if (history.pushState) {

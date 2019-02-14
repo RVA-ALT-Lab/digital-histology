@@ -14,8 +14,6 @@
   })
 
 })(jQuery);
-
-
  
 
 //rewrite primary link on menu
@@ -37,7 +35,6 @@ jQuery('.childbearing').click(function(e) {
   jQuery(this).parentsUntil('.cell-main-index').addClass('active');
 
 });
-
 
 
 //indent buttons that lead with a hyphen 

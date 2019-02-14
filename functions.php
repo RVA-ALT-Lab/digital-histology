@@ -145,7 +145,7 @@ function getPrevNext(){
             if(has_kids($page->ID)===0){
                     $pages[] += $page->ID;
                 }
-        }
+            }
         $current = array_search(get_the_ID(), $pages);
 
         $page_num =sizeof($pages);
