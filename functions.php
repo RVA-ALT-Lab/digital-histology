@@ -36,7 +36,6 @@ if(!function_exists('load_my_script')){
         $deps = array('jquery');
         $version= '1.0';
         $in_footer = true;
-        wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
         wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);        
         $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
         wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
@@ -51,7 +50,7 @@ if(!function_exists('hist_script')){
         global $post;
         $version= '1.2';
         $in_footer = true;
-        wp_enqueue_script('histology-script', get_stylesheet_directory_uri() . '/js/extras.js', array('jquery', 'menu-js','vue-js'), $version, $in_footer);
+        wp_enqueue_script('histology-script', get_stylesheet_directory_uri() . '/js/extras.js', array('jquery', 'menu-js'), $version, $in_footer);
     }
 }
 
@@ -348,3 +347,15 @@ function randomHomeBackground(){
 
     return $rand_row_image;
 }
+
+
+
+//ADD SEARCH TO NAV
+
+function add_last_nav_item($items) {
+  return $items .= '<li><form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="' . home_url( '/' ) . '"><div class="form-group"><input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="Search"></div></form></li>';
+}
+add_filter('wp_nav_menu_items','add_last_nav_item');
+
+
+

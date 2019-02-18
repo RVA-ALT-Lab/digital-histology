@@ -82,7 +82,7 @@ Template Name: Histology Page
 								 		//no # for first one
 									 	echo '<a href="" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 } else {
-									 	echo '<a href="#" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 }
 								 	$i++;
 								 }

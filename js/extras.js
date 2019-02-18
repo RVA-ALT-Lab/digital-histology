@@ -14,10 +14,11 @@
   })
 
 })(jQuery);
+
+
  
 
 //rewrite primary link on menu
-
 jQuery( document ).ready(function() {
     var mainSlide = document.getElementById('slide-button-0');
     if (mainSlide){
@@ -27,7 +28,6 @@ jQuery( document ).ready(function() {
  
 
 //main index interactions
-
 jQuery('.childbearing').click(function(e) {
   e.preventDefault(); 
   jQuery('.active').removeClass('active');
@@ -37,8 +37,8 @@ jQuery('.childbearing').click(function(e) {
 });
 
 
-//indent buttons that lead with a hyphen 
 
+//indent buttons that lead with a hyphen 
 var buttons = document.getElementsByClassName('button');
 
 for (var i =0; i < buttons.length; i++){
@@ -125,19 +125,16 @@ function setQuizState(){
   }
 }
 
-// function retainQuizState(){
-//   var state = document.getElementById('quizzer').dataset.quizstate
-//   if (state === 'hidden'){
-//     hideSlideTitles()
-//   } else if (state === 'visible'){
-//     showSlideTitles()
-//   }
-// }
+function retainQuizState(){
+  var state = document.getElementById('quizzer').dataset.quizstate
+  if (state === 'hidden'){
+    hideSlideTitles()
+  } else if (state === 'visible'){
+    showSlideTitles()
+  }
+}
 
 
 jQuery( document ).ready(function() {
   document.getElementById('quizzer').addEventListener("click", setQuizState);
 });
-
-
-

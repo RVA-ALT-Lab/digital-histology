@@ -187,11 +187,6 @@ a.navbar-brand:hover {
   background-color: #0082e7;
 }
 
-@media (max-width: 979px) {
-    .navbar-bright .dropdown-menu li > a {
-        color: #fff;
-    }
-}
 
 .navbar-bright li > a:hover,
 .navbar-bright li.active > a,
@@ -207,26 +202,6 @@ a.navbar-brand:hover {
 }
 
 
-
-@media (min-width: 979px) {
-    #sidebar.affix-top {
-        position: static;
-        margin-top: 30px;
-        width: 228px;
-    }
-    #sidebar.affix {
-        position: fixed;
-        top: 70px;
-        width: 228px;
-    }
-    #main .panel-body {
-        min-height: 240px;
-        max-height: 240px;
-    }
-}
-
-
-}
 
 /*
 category list plugin styling
@@ -314,17 +289,7 @@ h1.slide-title, .slide-title {
     width: 50px;
     height: auto;
 }
-@media(max-width:767px) {
-    .listing-item {
-        display: inline-block;
-        width: 100%;
-        border: 2px solid #BE3F21;
-        margin-bottom: 5px;
-        margin-top: 10px;
-        border-radius: 5px;
-        padding: 5px 5px 5px 10px;
-    }
-}
+
 footer {
     display: none;
 }
@@ -828,14 +793,77 @@ i {
   background-color: #fff;
 }
 
-@media (max-width: 978px) {
-    .hist-slides {
-        margin-left: 0;
+/*--------------------MOBILE LAND*/
+
+
+@media (min-width: 979px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 30px;
+        width: 228px;
+    }
+    #sidebar.affix {
+        position: fixed;
+        top: 70px;
+        width: 228px;
+    }
+    #main .panel-body {
+        min-height: 240px;
+        max-height: 240px;
     }
 }
 
 
+}
+
+@media (max-width: 978px) {
+    .hist-slides {
+        margin-left: 0;
+    }
+     .navbar-bright .dropdown-menu li > a {
+        color: #fff;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen and (max-width : 1200px) {
+    /*body {display: none;}*/
+     
+    .icon-bar {
+      border-bottom: 2px solid #fff;
+    }
+
+    a.navbar-brand {
+      font-size: 1.8em;
+    }
+
+    .navbar-toggle {
+      float:none;
+    }
+
+    .navbar-collapse.collapse {
+      visibility: none !important;      
+    }
+
+    .navbar-nav {
+      margin: 0 0 0 0;
+    }    
+    #searchform {
+      width: 125px;
+    }
+}
+
 @media (max-width: 766px) {
+     .listing-item {
+        display: inline-block;
+        width: 100%;
+        border: 2px solid #BE3F21;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        border-radius: 5px;
+        padding: 5px 5px 5px 10px;
+    }
+
     .navbar-bright .container {
       background-image: none;
     }
@@ -843,6 +871,9 @@ i {
     .icon-bar {
       border-bottom: 2px solid #fff;
     }
+     .navbar-nav {
+      margin: 0 auto;
+    }  
 
     a.navbar-brand {
       font-size: 1.8em;

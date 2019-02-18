@@ -41,6 +41,7 @@
 				<div class="container">
           
 					<div class="navbar-header">
+						
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -51,15 +52,7 @@
 					</div>
 
 					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
-
-						<?php //if(of_get_option('search_bar', '1')) {?>
-						<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-							<div class="form-group">
-								<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="<?php _e('Search','wpbootstrap'); ?>">
-							</div>
-						</form>
-						<?php //} ?>
+						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>						
 					</div>
 
 				</div> <!-- end .container -->
@@ -68,4 +61,3 @@
 		</header> <!-- end header -->
 		
 		<div class="container">
-
