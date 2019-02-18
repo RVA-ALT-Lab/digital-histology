@@ -134,12 +134,8 @@ function stunLinks(){
 
 function checkUrl(){
   var id = getQueryVariable("menu");
-  //console.log(id)
-  //console.log('menu thing')
   if (id){
      jQuery('#'+id).parent().children('ul').addClass('active');
-     //console.log(jQuery('#'+id));
-     //console.log('foo')
      jQuery('#'+id).parents().addClass('active');
   }
 }
