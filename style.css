@@ -840,14 +840,13 @@ i {
     .navbar-toggle {
       float:none;
     }
-
-    .navbar-collapse.collapse {
-      visibility: none !important;      
-    }
+   
 
     .navbar-nav {
       margin: 0 0 0 0;
+      float: none;
     }    
+
     #searchform {
       width: 125px;
     }
@@ -876,7 +875,7 @@ i {
     }  
 
     a.navbar-brand {
-      font-size: 1.8em;
+      font-size: 1em;
     }
 
     .navbar-toggle {

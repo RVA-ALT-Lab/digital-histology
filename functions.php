@@ -359,3 +359,16 @@ add_filter('wp_nav_menu_items','add_last_nav_item');
 
 
 
+function histology_bootstrap_main_nav() {
+  // Display the WordPress menu if available
+  wp_nav_menu( 
+    array( 
+      'menu' => 'main_nav', /* menu name */
+      'menu_class' => 'nav',
+      'theme_location' => 'main_nav', /* where in the theme it's assigned */
+      'container' => 'false', /* container class */
+      'fallback_cb' => 'wp_bootstrap_main_nav_fallback', /* menu fallback */
+      'walker' => new Bootstrap_walker()
+    )
+  );
+}

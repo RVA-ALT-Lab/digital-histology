@@ -8,7 +8,7 @@ Template Name: Histology Page
 			
 			<div id="content" class="clearfix row">
 			
-				<div id="main" class="col col-lg-12 clearfix center" role="main" >
+				<div id="main" class="col col-12 clearfix center" role="main" >
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					
