@@ -902,3 +902,17 @@ i {
       margin-top: 10px;
     }
 }
+
+
+
+/*last minute stuff*/
+
+#post-21762 .post_content, #post-21748 .post_content{
+  width: 600px;
+  margin: auto;
+  line-height: 1.6em;
+}
+
+#post-21762 p, #post-21748 p  {
+  margin: 10px 0 20px 0;
+}

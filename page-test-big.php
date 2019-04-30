@@ -39,7 +39,7 @@ Template Name: Histology Page
 									<?php 						
 									   if( have_rows('histo_slide') ): 
 										$count = 1;
-									    $menu = ['Main Slide']; 
+									    $menu = ['Initial Image']; 
 									?>
 									
 									<?php while( have_rows('histo_slide') ): the_row(); 

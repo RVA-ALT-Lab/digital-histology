@@ -8,7 +8,7 @@ Template Name: Static Menu
 
 			<div id="content" class="clearfix row" style="background-image: url(<?php echo randomHomeBackground() ;?>)">
 
-				<div id="main" class="col col-12 clearfix" role="main">
+				<div id="main" class="col col-lg-12 clearfix" role="main">
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

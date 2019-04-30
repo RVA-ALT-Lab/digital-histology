@@ -88,7 +88,7 @@ function makeLimb(data, type){
                 limbMenu = limbMenu.concat('<li><a class="live" href="' + item.children[0].guid + '">' + overviewClean(item.post_title) + '</a>')
                 makeLimb(item.children, "live")
             } //this is super ugly but this appears to be the only item that violates the pattern
-            if (item.post_title == "Overview of connective tissues"){
+            if (item.post_title == "Overview of connective tissues" || item.post_title == "Comparison"){
               //console.log(item.post_title + ' foo')
               limbMenu = limbMenu.concat('<li><a class="live" href="' + item.guid + '">' + overviewClean(item.post_title) + '</a>')             
             }
@@ -134,8 +134,12 @@ function stunLinks(){
 
 function checkUrl(){
   var id = getQueryVariable("menu");
+  //console.log(id)
+  //console.log('menu thing')
   if (id){
      jQuery('#'+id).parent().children('ul').addClass('active');
+     //console.log(jQuery('#'+id));
+     //console.log('foo')
      jQuery('#'+id).parents().addClass('active');
   }
 }
@@ -168,7 +172,7 @@ function specialAddition(){
 
 }
 
-//make url change per menu change
+
 //from https://eureka.ykyuen.info/2015/04/08/javascript-add-query-parameter-to-current-url-without-reload/
 function updateURL(id) {
       if (history.pushState) {

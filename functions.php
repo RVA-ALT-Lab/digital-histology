@@ -36,6 +36,7 @@ if(!function_exists('load_my_script')){
         $deps = array('jquery');
         $version= '1.0';
         $in_footer = true;
+        //wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
         wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);        
         $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
         wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
@@ -359,16 +360,3 @@ add_filter('wp_nav_menu_items','add_last_nav_item');
 
 
 
-function histology_bootstrap_main_nav() {
-  // Display the WordPress menu if available
-  wp_nav_menu( 
-    array( 
-      'menu' => 'main_nav', /* menu name */
-      'menu_class' => 'nav',
-      'theme_location' => 'main_nav', /* where in the theme it's assigned */
-      'container' => 'false', /* container class */
-      'fallback_cb' => 'wp_bootstrap_main_nav_fallback', /* menu fallback */
-      'walker' => new Bootstrap_walker()
-    )
-  );
-}
