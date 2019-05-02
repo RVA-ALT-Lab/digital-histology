@@ -39,6 +39,8 @@ Template Name: Static Menu
                                 </li> -->
                             </ul>
                             	<h2 id="quizzes"><a href="https://rampages.us/histology/quizzes/">Quizzes</a></h2>
+                            	<h2 id="textbook"><a href="https://rampages.us/histology/review-textbook/">Textbook</a></h2>
+
                         </div>
 
 						</div>

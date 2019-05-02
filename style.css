@@ -721,12 +721,13 @@ i {
   background-position: right;
 }
 
-#app h2#quizzes {
+#app h2#quizzes, #app h2#textbook {
   background-color: rgb(179, 198, 231);
   color: #000;
+  display: block;
 }
 
-#app h2#quizzes:hover {
+#app h2#quizzes a:hover, #app h2#textbook a:hover {
   background-color: rgb(141,169,219);
   color: #000;
 }
@@ -735,14 +736,14 @@ i {
 
 .indent {margin-left: 1em}
 
-#quizzes-list ul {
+#quizzes-list ul, #textbook-chapters ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 
-#quizzes-list ul li {
+#quizzes-list ul li, #textbook-chapters ul li {
     min-height: 1px;
     line-height: 1em;
     vertical-align: middle;
@@ -756,18 +757,18 @@ i {
     background-color: #333;
 }
 
-#quizzes-list ul li:hover {
+#quizzes-list ul li:hover, #textbook-chapters ul li:hover {
   background-color: #0082e7;
 }
 
-#quizzes-list ul li a{
+#quizzes-list ul li a, #textbook-chapters ul li a {
   color: #fff;
   width: 100%;
   display: inline-block;
   margin-right: 10px;
 }
 
-#quizzes-list ul li a:hover {
+#quizzes-list ul li a:hover,  #textbook-chapters ul li a:hover{
   background-color: #0082e7;
   color: #fff;
 }
