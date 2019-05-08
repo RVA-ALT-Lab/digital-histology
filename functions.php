@@ -360,3 +360,16 @@ add_filter('wp_nav_menu_items','add_last_nav_item');
 
 
 
+//ADD return to index for quizzes
+function extra_quiz_nav($content) {
+ global $post;
+  $html = '<p><a class="btn btn-primary quiz-index" href="https://rampages.us/histology/quizzes/">Return to the quiz menu</a></p>';
+  if ($post->post_parent === 21265) {
+    return $content . $html;
+  } else {
+  	return $content;
+  }
+}
+
+add_filter( 'the_content', 'extra_quiz_nav' );
+

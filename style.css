@@ -929,6 +929,12 @@ i {
   padding-top: 60px;
 }
 
+.quiz-index {
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+}
+
 /*#post-21762 .post_content, #post-21748 .post_content{
   -webkit-column-count: 2 40%;
      -moz-column-count: 2 40%;
