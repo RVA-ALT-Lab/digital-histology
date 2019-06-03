@@ -164,9 +164,9 @@ if (document.getElementById('slide-the-pages')){
     var urlArray = window.location.href.split('/');
     var lastSegment = urlArray.pop() || urlArray.pop();  
     //console.log(lastSegment)
-    let newPage = lastSegment.replace(/[0-9]/, slider.value);
+    let newPage = lastSegment.replace(/\d/g, '')+slider.value;
     console.log(newPage);
-    window.location.assign(newPage);
+    window.location.assign(urlArray.join('/')+'/'+newPage);
   }
 }
 
