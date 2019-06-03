@@ -136,7 +136,9 @@ function retainQuizState(){
 
 
 jQuery( document ).ready(function() {
-  document.getElementById('quizzer').addEventListener("click", setQuizState);
+  if ( document.getElementById('quizzer')){
+    document.getElementById('quizzer').addEventListener("click", setQuizState);
+  }
 });
 
 
@@ -153,4 +155,19 @@ jQuery( document ).ready(function() {
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
+
+
+if (document.getElementById('slide-the-pages')){
+  let slider = document.getElementById('slide-the-pages');
+  slider.oninput = function() {
+    //console.log(slider.value);
+    var urlArray = window.location.href.split('/');
+    var lastSegment = urlArray.pop() || urlArray.pop();  
+    //console.log(lastSegment)
+    let newPage = lastSegment.replace(/[0-9]/, slider.value);
+    console.log(newPage);
+    window.location.assign(newPage);
+  }
+}
+
 

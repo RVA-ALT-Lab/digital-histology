@@ -153,7 +153,7 @@ function getPrevNext(){
         $prevID = $pages[$current-1];
         $nextID = $pages[$current+1];
 
-        echo '<div class="navigation col-md-9">';
+        echo '<div class="navigation col-md-9" id="hist-nav" data-pages="'.$page_num.'">';
 
         if (!empty($prevID)) {
             echo '<a href="';
@@ -178,8 +178,10 @@ function getPrevNext(){
             echo 'title="';
             echo get_the_title($nextID);
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-right">NEXT <img src="'.get_stylesheet_directory_uri().'/imgs/arrow_right_ai.svg" alt="Right arrow." ></div></a>';
-
         }
+        if ($page_num >1){
+        echo '<div class="page-slider col-md-12"><input type="range" min="1" max="'.$page_num.'" value="'.($current+1).'" class="slider" id="slide-the-pages"></div>';
+    }
 }
 
 
