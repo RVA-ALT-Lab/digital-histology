@@ -17,14 +17,14 @@
 
 
  
-
-//rewrite primary link on menu
-jQuery( document ).ready(function() {
-    var mainSlide = document.getElementById('slide-button-0');
-    if (mainSlide){
-     mainSlide.setAttribute('href', window.location.href);
-    }
-});
+//NOW DONE VIA THE TEMPLATE IN PHP
+// //rewrite primary link on menu
+// jQuery( document ).ready(function() {
+//     var mainSlide = document.getElementById('slide-button-0');
+//     if (mainSlide){
+//      mainSlide.setAttribute('href', window.location.href);
+//     }
+// });
  
 
 //main index interactions
@@ -144,6 +144,11 @@ jQuery( document ).ready(function() {
     document.getElementById('quizzer').addEventListener("click", setQuizState);
   } 
   if (window.location.hash.substring(1) === 'hidden'){
+      let mainSlide = document.getElementById('slide-button-0');
+      if (mainSlide){
+        console.log(mainSlide.setAttribute('href', mainSlide.href+'#hidden'));
+      }
+
     hideSlideTitles();
   }
 });
@@ -180,6 +185,8 @@ function removeHash () {
   })();
 
 
+
+//SLIDER NAVIGATION
 if (document.getElementById('slide-the-pages')){
   let slider = document.getElementById('slide-the-pages');
   slider.oninput = function() {
