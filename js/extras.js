@@ -75,11 +75,14 @@ document.onkeydown = function(evt) {
 
 
 //HIDE AND SEEK FOR QUIZ YOURSELF STUFF
-function hideSlideTitles(){
+function hideSlideTitles(){   
+    window.location.hash = 'hidden';     
+    let list = document.querySelector('.button-wrap');
+    shuffleNodes(list);//shuffle the overlays
     var mainSlide = document.getElementById('slide-button-0'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
-      var subslides = document.getElementsByClassName('sub-deep');
+      var subslides = document.getElementsByClassName('sub-deep');     
       for (var i = 0; i < buttons.length; i++){
         var original = buttons[i].innerHTML;
         buttons[i].innerHTML = '<span class="hidden">' + original + '</span>* * *';        
@@ -91,11 +94,12 @@ function hideSlideTitles(){
         document.getElementById('the_slide_content').classList.add('nope')
         document.getElementById('quizzer').dataset.quizstate = 'hidden'
         document.getElementById('quizzer').innerHTML = 'Show'
-    }
+    }    
 }
 
 
 function showSlideTitles(){
+  window.location.hash = '';
   var mainSlide = document.getElementById('slide-button-0'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
@@ -117,11 +121,11 @@ function showSlideTitles(){
 
 
 function setQuizState(){
-  var state = document.getElementById('quizzer').dataset.quizstate
+  var state = document.getElementById('quizzer').dataset.quizstate;
   if (state === 'hidden'){
-    showSlideTitles()
+    showSlideTitles();
   } else {
-    hideSlideTitles()
+    hideSlideTitles();
   }
 }
 
@@ -134,14 +138,33 @@ function retainQuizState(){
   }
 }
 
-
+//read hash and look for button click
 jQuery( document ).ready(function() {
   if ( document.getElementById('quizzer')){
     document.getElementById('quizzer').addEventListener("click", setQuizState);
+  } 
+  if (window.location.hash.substring(1) === 'hidden'){
+    hideSlideTitles();
   }
 });
 
 
+//shuffle overlay elements from https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order
+ function shuffleNodes(list) {
+        var nodes = list.children, i = 0;
+        nodes = Array.prototype.sort.call(nodes);
+        while(i < nodes.length) {
+           list.appendChild(nodes[i]);
+           ++i;
+        }
+    }
+
+//remove hash from url
+//from https://stackoverflow.com/a/5298684/3390935
+function removeHash () { 
+    history.pushState("", document.title, window.location.pathname
+                                                       + window.location.search);
+}
 
 
   var _paq = window._paq || [];

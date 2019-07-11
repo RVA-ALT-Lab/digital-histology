@@ -72,15 +72,16 @@ Template Name: Histology Page
 									</div>
 									<?php endwhile; ?>	
 								</div>
-<!--SLIDE NATIGATION MENU-->
+<!--SLIDE NAVIGATION MENU-->
 							<div class="button-wrap col-md-3">
 								 <?php  
 								 $length = count($menu);
 								 $i = 0;
+								$current_slug = add_query_arg( array(), $wp->request );
 								 while ( $i < $length){
 								 	if ($i === 0){
 								 		//no # for first one
-									 	echo '<a href="" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 	echo '<a href="' . $current_slug . '" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 } else {
 									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 }
