@@ -88,7 +88,9 @@ function hideSlideTitles(){
 
 
 function showSlideTitles(){
-  window.location.hash = '';
+  //window.location.hash = '';
+     window.history.replaceState('', '', window.location.href.split('#')[0]);//wipe out hash and hidden
+
   var mainSlide = document.getElementById('slide-button-1'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
@@ -156,8 +158,7 @@ jQuery( document ).ready(function() {
 //remove hash from url
 //from https://stackoverflow.com/a/5298684/3390935
 function removeHash () { 
-    history.pushState("", document.title, window.location.pathname
-                                                       + window.location.search);
+    history.pushState("", document.title, window.location.pathname + window.location.search);
 }
 
 
@@ -176,17 +177,32 @@ function removeHash () {
 
 
 //SLIDER NAVIGATION
-if (document.getElementById('slide-the-pages')){
+if (document.getElementById('slide-the-pages')){  
   let slider = document.getElementById('slide-the-pages');
+  let max = slider.max;
   slider.oninput = function() {
     //console.log(slider.value);
-    var urlArray = window.location.href.split('/');
-    var lastSegment = urlArray.pop() || urlArray.pop();  
+    var location = window.location.href.split('#')[0];
+    var urlArray = location.split('/');
+    // console.log(urlArray);
+    // var lastSegment = urlArray.pop() || urlArray.pop();  
     //console.log(lastSegment)
-    let newPage = lastSegment.replace(/\d/g, '')+slider.value;//set this to variable and randomize if hash = hidden
-    console.log(newPage);
-    window.location.assign(urlArray.join('/')+'/'+newPage);
+  var state = document.getElementById('quizzer').dataset.quizstate;
+  var urlState = window.location.hash.substring(1);
+  var lastSegment = urlArray.pop() || urlArray.pop();  
+  if (state === 'hidden' || urlState === 'hidden'){
+    var newPage = lastSegment.replace(/\d/g, '')+getRandomInt(max);//set this to variable and randomize if hash = hidden 
+    window.location.assign(urlArray.join('/')+'/'+newPage+'/#hidden');
+  } else {
+      var newPage = lastSegment.replace(/\d/g, '')+slider.value; 
+      window.location.assign(urlArray.join('/')+'/'+newPage);
+    }
   }
 }
 
+
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 

@@ -24,13 +24,13 @@ Template Name: Histology Page
 								<div class="subcontent col-md-9">
 									<?php if ( have_rows('histo_slide') ) : ?>	
 									<!--regular post content-->	
-										<div id="subcontent-1" class="subcontent-1 subslide active"  <?php get_post_background_img ($post)?>>
+										<div id="subcontent-0" class="subcontent-0 subslide active"  <?php get_post_background_img ($post)?>>
 											<img src="<?php echo get_stylesheet_directory_uri()."/imgs/trans.png"; ?>" alt="This is blank.">
 											<h1 id="the_slide_title" class="slide-title"><?php echo main_slide_title(get_the_ID()); ?></h1>
 											<div id="the_slide_content"><?php the_content(); ?></div>
 										</div>
 									<?php else :?>
-										<div class="subcontent-1 active" id="sub-con">
+										<div class="subcontent-0 active" id="sub-con">
 											<?php the_content(); ?>
 										</div>
 									<?php endif ?>
@@ -38,7 +38,7 @@ Template Name: Histology Page
 <!--SLIDES BEGIN aka custom fields data-->
 									<?php 						
 									   if( have_rows('histo_slide') ): 
-										$count = 1;
+										$count = 0;
 									    $menu = ['Initial Image']; 
 									?>
 									
@@ -76,12 +76,12 @@ Template Name: Histology Page
 							<div class="button-wrap col-md-3">
 								 <?php  
 								 $length = count($menu);
-								 $i = 1;
+								 $i = 0;
 								$current_slug = add_query_arg( array(), $wp->request );
 								 while ( $i < $length){
-								 	if ($i === 1){
+								 	if ($i === 0){
 								 		//no # for first one
-									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">Main Slide</a>';
 									 } else {
 									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 }
