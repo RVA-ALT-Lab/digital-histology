@@ -1,14 +1,13 @@
 (function($) {
 
-  $('.button').first().addClass('active');
   $('.button').click(function(){
     var $this = $(this);
-    $siblings = $this.parent().children(),
-    //console.log($siblings);
+    let theId = $this.data('id');
+    $siblings = $this.parent().children();
     position = $siblings.index($this)+1;
     //console.log (position);
-    $('.subcontent div').removeClass('active').eq(position).addClass('active');
-    
+    $('.subcontent div').removeClass('active');
+    $('.subcontent-'+theId).addClass('active');   
     $siblings.removeClass('active');
     $this.addClass('active');     
   })
@@ -16,25 +15,15 @@
 })(jQuery);
 
 
- 
-//NOW DONE VIA THE TEMPLATE IN PHP
-// //rewrite primary link on menu
-// jQuery( document ).ready(function() {
-//     var mainSlide = document.getElementById('slide-button-0');
-//     if (mainSlide){
-//      mainSlide.setAttribute('href', window.location.href);
-//     }
+
+//main index interactions -- left over and to be deleted
+// jQuery('.childbearing').click(function(e) {
+//   e.preventDefault(); 
+//   jQuery('.active').removeClass('active');
+//   jQuery(this).parent().children('ul').toggleClass('active');
+//   jQuery(this).parentsUntil('.cell-main-index').addClass('active');
+
 // });
- 
-
-//main index interactions
-jQuery('.childbearing').click(function(e) {
-  e.preventDefault(); 
-  jQuery('.active').removeClass('active');
-  jQuery(this).parent().children('ul').toggleClass('active');
-  jQuery(this).parentsUntil('.cell-main-index').addClass('active');
-
-});
 
 
 
@@ -79,7 +68,7 @@ function hideSlideTitles(){
     window.location.hash = 'hidden';     
     let list = document.querySelector('.button-wrap');
     shuffleNodes(list);//shuffle the overlays
-    var mainSlide = document.getElementById('slide-button-0'); 
+    var mainSlide = document.getElementById('slide-button-1'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
       var subslides = document.getElementsByClassName('sub-deep');     
@@ -100,11 +89,11 @@ function hideSlideTitles(){
 
 function showSlideTitles(){
   window.location.hash = '';
-  var mainSlide = document.getElementById('slide-button-0'); 
+  var mainSlide = document.getElementById('slide-button-1'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
 
-      for (var i =0; i < buttons.length; i++){
+      for (var i =0; i < buttons.length; i++){ //REVISIT THIS
         var hidden = buttons[i].firstChild.innerHTML;
           buttons[i].innerHTML = hidden;       
         }
@@ -194,7 +183,7 @@ if (document.getElementById('slide-the-pages')){
     var urlArray = window.location.href.split('/');
     var lastSegment = urlArray.pop() || urlArray.pop();  
     //console.log(lastSegment)
-    let newPage = lastSegment.replace(/\d/g, '')+slider.value;
+    let newPage = lastSegment.replace(/\d/g, '')+slider.value;//set this to variable and randomize if hash = hidden
     console.log(newPage);
     window.location.assign(urlArray.join('/')+'/'+newPage);
   }

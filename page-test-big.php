@@ -24,7 +24,7 @@ Template Name: Histology Page
 								<div class="subcontent col-md-9">
 									<?php if ( have_rows('histo_slide') ) : ?>	
 									<!--regular post content-->	
-										<div class="subcontent-1 subslide active"  <?php get_post_background_img ($post)?>>
+										<div id="subcontent-1" class="subcontent-1 subslide active"  <?php get_post_background_img ($post)?>>
 											<img src="<?php echo get_stylesheet_directory_uri()."/imgs/trans.png"; ?>" alt="This is blank.">
 											<h1 id="the_slide_title" class="slide-title"><?php echo main_slide_title(get_the_ID()); ?></h1>
 											<div id="the_slide_content"><?php the_content(); ?></div>
@@ -53,8 +53,8 @@ Template Name: Histology Page
 											array_push($menu,$title);
 										}
 									?>
-									<div class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
-										<img src="<?php echo $image[url]; ?>" alt="<?php echo $title . ' ' . $content;?>">
+									<div id="subcontent-<?php echo $count;?>" class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
+										<img id="overlay-<?php echo $count ;?>" src="<?php echo $image[url]; ?>" alt="<?php echo $title . ' ' . $content;?>">
 										<?php if( $title ): ?>											
 											<h3 class="slide-title sub-deep">
 												<?php echo $title; ?>
@@ -76,12 +76,12 @@ Template Name: Histology Page
 							<div class="button-wrap col-md-3">
 								 <?php  
 								 $length = count($menu);
-								 $i = 0;
+								 $i = 1;
 								$current_slug = add_query_arg( array(), $wp->request );
 								 while ( $i < $length){
-								 	if ($i === 0){
+								 	if ($i === 1){
 								 		//no # for first one
-									 	echo '<a href="' . $current_slug . '" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
+									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 } else {
 									 	echo '<a href="javascript:;" class="button" id="slide-button-'.$i.'" data-id="'.$i.'">' .$menu[$i] . '</a>';
 									 }
