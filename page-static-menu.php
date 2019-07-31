@@ -37,11 +37,17 @@ Template Name: Static Menu
                                     </div>
 
                                 </li> -->
-                            </ul>
-                            	<h2 id="quizzes"><a href="https://rampages.us/histology/quizzes/">Quizzes</a></h2>
-                            	<h2 id="textbook"><a href="https://rampages.us/histology/review-textbook/">Textbook</a></h2>
+                            </ul> 
+                             <div id="resources">
+                            	<h2>Additional Resources</h2>
+                            	<div class="cell-main-index">
+	                            	<div><a href="https://rampages.us/histology/quizzes/">Quizzes</a></div>
+	                            	<div><a href="https://rampages.us/histology/review-textbook/">Textbook</a></div>
+	                            </div>
+                            </div>                          
 
                         </div>
+
 
 						</div>
 
