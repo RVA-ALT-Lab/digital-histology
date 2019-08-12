@@ -84,7 +84,7 @@ function custom_breadcrumbs(){
 
                 // Parent page loop
                 if ( !isset( $parents ) ) $parents = null;
-                $parents .= '<span class="item-parent"><a class="bread-parent" href="/histology">Main Menu</a> &#187; </span> ';
+                $parents .= '<span class="item-parent"><a class="bread-parent" href="' . get_site_url() . '">Main Menu</a> &#187; </span> ';
                 foreach ( $anc as $ancestor ) {
                     $parents .= '<span class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . site_url() .'?menu=menu_' . $ancestor . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></span>';
                     $parents .= '<span class="separator separator-' . $ancestor . '"> &#187; </span>';
@@ -323,7 +323,7 @@ function histology_create_menu($post_id) {
     global $wpdb;
     $results = $wpdb->get_results( "SELECT `ID`, `post_title`, `post_parent`, `post_name` FROM {$wpdb->prefix}posts WHERE post_type='page' and post_status = 'publish' ", ARRAY_A );
     foreach($results as &$result){
-        $result['guid'] = 'https://rampages.us/histology/?page_id=' . $result['ID'];
+        $result['guid'] = 'https://digitalhistology.org/?page_id=' . $result['ID'];
     }
     file_put_contents(get_stylesheet_directory() . '/results.json', json_encode($results));
 
@@ -365,7 +365,7 @@ add_filter('wp_nav_menu_items','add_last_nav_item');
 //ADD return to index for quizzes
 function extra_quiz_nav($content) {
  global $post;
-  $html = '<p><a class="btn btn-primary quiz-index" href="https://rampages.us/histology/quizzes/">Return to the quiz menu</a></p>';
+  $html = '<p><a class="btn btn-primary quiz-index" href="https://digitalhistology.org/quizzes/">Return to the quiz menu</a></p>';
   if ($post->post_parent === 21265) {
     return $content . $html;
   } else {
