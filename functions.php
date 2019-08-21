@@ -24,8 +24,8 @@ $files = get_children('post_parent='.get_the_ID().'&post_type=attachment
     $imagepieces = explode('"', $image);
     $imagepath = $imagepieces[1];
     $main=wp_get_attachment_url($num);
-		$template=get_template_directory();
-		$the_title=get_the_title();
+        $template=get_template_directory();
+        $the_title=get_the_title();
     print "<img src='$main' alt='$the_title' class='frame' />";
   endif;
 }
@@ -324,12 +324,31 @@ function histology_create_menu($post_id) {
     $results = $wpdb->get_results( "SELECT `ID`, `post_title`, `post_parent`, `post_name` FROM {$wpdb->prefix}posts WHERE post_type='page' and post_status = 'publish' ", ARRAY_A );
     foreach($results as &$result){
         $result['guid'] = get_site_url() . '/?page_id=' . $result['ID'];
+        if (test_for_children($result['ID']) === 'true'){
+            $result['has_children'] = 'true';
+        } else {
+            $result['has_children'] = 'false';
+        }
     }
     file_put_contents(get_stylesheet_directory() . '/results.json', json_encode($results));
 
 }
 add_action('save_post', 'histology_create_menu');
 
+
+function test_for_children($post_id){
+    $args = array(
+        'post_parent' => $post_id,
+        'post_type'   => 'page', 
+        'numberposts' => 1,
+    );
+    $children = get_children( $args );
+    if(count($children)>0){
+        return 'true';
+    } else {
+        return 'false';
+    }
+}
 
 
 //new minor index page list maker
@@ -369,7 +388,7 @@ function extra_quiz_nav($content) {
   if ($post->post_parent === 21265) {
     return $content . $html;
   } else {
-  	return $content;
+    return $content;
   }
 }
 
