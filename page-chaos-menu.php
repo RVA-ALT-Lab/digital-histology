@@ -25,6 +25,7 @@ Template Name: CHAOS Menu
 						<div class="hist-slides">
 						<!--SUB PAGES MENU-->
 						<div id="hist-chaos-menu" class="col-md-12 offset-5">
+						<?php the_content();?>
 						<div id="chaos">
                             <ul>                                
                             </ul>                            	

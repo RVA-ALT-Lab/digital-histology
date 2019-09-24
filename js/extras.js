@@ -67,7 +67,7 @@ document.onkeydown = function(evt) {
 function hideSlideTitles(){   
     window.location.hash = 'hidden';     
     let list = document.querySelector('.button-wrap');
-    shuffleNodes(list);//shuffle the overlays
+    //shuffleNodes(list);//shuffle the overlays
     var mainSlide = document.getElementById('slide-button-1'); 
     if (mainSlide){
       var buttons = document.getElementsByClassName('button');
@@ -80,9 +80,10 @@ function hideSlideTitles(){
             subslides[i].classList.add('nope')
         }
         document.getElementById('the_slide_title').classList.add('nope')
+        document.querySelectorAll('header')[1].classList.add('nope')
         document.getElementById('the_slide_content').classList.add('nope')
         document.getElementById('quizzer').dataset.quizstate = 'hidden'
-        document.getElementById('quizzer').innerHTML = 'Show'
+        document.getElementById('quizzer').innerHTML = 'Show'        
     }    
 }
 

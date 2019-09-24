@@ -112,7 +112,7 @@ function makeLimb(data, type) {
       makeLimb(item.children, "live");
     } //this is super ugly but this appears to be the only item that violates the pattern
     if (
-      item.post_title == "Overview of connective tissues" ||
+      //item.post_title == "Overview of connective tissues" ||
       item.post_title == "Comparison"
     ) {
       //console.log(item.post_title + ' foo')
