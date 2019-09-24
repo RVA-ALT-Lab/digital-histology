@@ -10,6 +10,7 @@ function theme_enqueue_styles() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
+
 add_filter('widget_text', 'do_shortcode');
 
 //function to call first uploaded image in functions file
@@ -32,14 +33,14 @@ $files = get_children('post_parent='.get_the_ID().'&post_type=attachment
 
 if(!function_exists('load_my_script')){
     function load_my_script() {
-        global $post;
-        $deps = array('jquery');
-        $version= '1.0';
-        $in_footer = true;
-        //wp_enqueue_script('vue-js', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js',$deps, $version, $in_footer);
-        wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);        
-        $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
-        wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
+         if(!is_page_template('page-chaos-menu.php')) {
+            $deps = array('jquery');
+            $version= '1.0';
+            $in_footer = true;
+            wp_enqueue_script('menu-js', get_stylesheet_directory_uri() . '/js/menu.js',$deps, $version, $in_footer);        
+            $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
+            wp_localize_script( 'menu-js', 'histology_directory', $histology_directory );
+        }
     }
 }
 
@@ -48,16 +49,30 @@ add_action('wp_enqueue_scripts', 'load_my_script');
 
 if(!function_exists('hist_script')){
     function hist_script() {
-        global $post;
-        $version= '1.2';
-        $in_footer = true;
-        wp_enqueue_script('histology-script', get_stylesheet_directory_uri() . '/js/extras.js', array('jquery', 'menu-js'), $version, $in_footer);
+         if(!is_page_template('page-chaos-menu.php')) {
+     
+            $version= '1.2';
+            $in_footer = true;
+            wp_enqueue_script('histology-script', get_stylesheet_directory_uri() . '/js/extras.js', array('jquery', 'menu-js'), $version, $in_footer);
+        }
     }
 }
 
 add_action('wp_enqueue_scripts', 'hist_script');
 
 
+//enqueue testing randomizer menu
+//yeah, lots of duplication but it's done
+function chaos_menu_enqueue(){
+     if(is_page_template('page-chaos-menu.php')) {
+                $version = '.666';
+                $in_footer = true;
+                wp_enqueue_script('histology-chaos', get_stylesheet_directory_uri() . '/js/chaos_menu.js', array('jquery'), $version, $in_footer);
+                $histology_directory = array( 'data_directory' => get_stylesheet_directory_uri() );
+            wp_localize_script( 'histology-chaos', 'histology_directory', $histology_directory );
+            } 
+}
+add_action('wp_enqueue_scripts', 'chaos_menu_enqueue');
 
 
 
@@ -233,39 +248,6 @@ function main_slide_title($post_id){
 }
 
 
-//sets a custom field to indicate if a page has children to save a call later
-// add_action( 'save_post', 'has_child_meta' );
-
-// function has_child_meta(){
-//     global $post;
-//     $post_id = $post->ID;
-//      if (get_post_type($post_id)==='page'){
-//          $args = array(
-//                 'parent' => $post_id,
-//                 'post_type' => 'page',
-//                 'post_status' => 'publish',
-//                 'number' => 1, //we only need one
-//             );
-//          $pages = get_pages($args);
-//          $number = sizeof($pages);
-//         if ($number != 0 ) {
-//             add_post_meta($post_id, 'has_children', 1, true);
-//         } else {
-//             add_post_meta($post_id, 'has_children', 0, true);
-//         }
-//     }
-// }
-
-// add_action( 'save_post', 'has_child_meta_to_parent' );
-// function has_child_meta_to_parent(){
-//     global $post;
-//     $parent = $post->post_parent;
-//         if ($parent != 0 ) {
-//             add_post_meta($parent, 'has_children', 1, true);
-//         } else {
-//             add_post_meta($parent, 'has_children', 0, true);
-//         }
-//     }
 
 //PUTS has_children INTO THE API
 function children_get_post_meta_cb($object, $field_name, $request){

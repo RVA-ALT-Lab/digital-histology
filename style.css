@@ -985,3 +985,13 @@ i {
   background: #BE3F21;
   cursor: pointer;
 }
+
+
+/*CHAOS*/
+#chaos .end {
+  display: none;
+}
+
+#chaos ul {
+  list-style: none;
+}
