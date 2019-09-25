@@ -160,7 +160,7 @@ function stunLinks() {
     jQuery(this)
       .parentsUntil(".cell-chaos-index")
       .addClass("active");
-      let links = this.parentNode.querySelectorAll('.end')
+      let links = this.parentNode.querySelectorAll('li:first-child > .end')
       window.location.href = get_random(links).href+'/#hidden'
   });
 }
