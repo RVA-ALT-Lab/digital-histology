@@ -165,13 +165,17 @@ function getPrevNext(){
 
         $page_num =sizeof($pages);
 
-        $prevID = $pages[$current-1];
-        $nextID = $pages[$current+1];
+        if($current > 1){
+            $prevID = $pages[$current-1];
+            }
+        if ($current+1 < $page_num){
+            $nextID = $pages[$current+1];    
+        }    
 
         echo '<div class="navigation col-md-9" id="hist-nav" data-pages="'.$page_num.'">';
 
         if (!empty($prevID)) {
-            echo '<a href="';
+            echo '<a id="previous-link" href="';
             echo get_permalink($prevID);
             echo '" ';
             echo 'title="';
@@ -187,7 +191,7 @@ function getPrevNext(){
         echo '<div class="total-pages col-md-2">'.($current+1) . ' of ' . $page_num . '</div>';
         if (!empty($nextID)) {
 
-            echo '<a href="';
+            echo '<a id="next-link" href="';
             echo get_permalink($nextID);
             echo '"';
             echo 'title="';

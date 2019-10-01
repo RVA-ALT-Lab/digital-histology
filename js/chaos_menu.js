@@ -160,7 +160,13 @@ function stunLinks() {
     jQuery(this)
       .parentsUntil(".cell-chaos-index")
       .addClass("active");
-      let links = this.parentNode.querySelectorAll('li:first-child > .end')
+      let links = this.parentNode.querySelectorAll('.end');
+      let travelLinks = [];
+      links.forEach(function(link){
+        travelLinks.push(link+'/#hidden')
+      })
+      localStorage.setItem('random-list',travelLinks);
+      localStorage.setItem('random-list-page-number', 1)
       window.location.href = get_random(links).href+'/#hidden'
   });
 }
@@ -228,3 +234,6 @@ function updateURL(id) {
   }
 }
 
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
