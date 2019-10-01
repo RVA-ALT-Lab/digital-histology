@@ -9,11 +9,11 @@ Template Name: Histology Page
 			<div id="content" class="clearfix row">
 			
 				<div id="main" class="col col-12 clearfix center" role="main" >
-
+					<?php  echo '<button class="eyeball" id="quizzer">Hide</button>';?>		
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
-						
+												
 						<header>
 							
 						<?php echo custom_breadcrumbs(); ?> 
@@ -64,7 +64,7 @@ Template Name: Histology Page
 											<h3 class="slide-title">												
 											</h3>
 										<?php endif; ?>		
-										<?php if( $content ): ?>								
+										<?php if( $content ): ?>
 									    	<span class="sub-deep"><?php echo $content;?></span>
 									    <?php else: ?>
 											<div class="slide-text"></div>
@@ -106,7 +106,6 @@ Template Name: Histology Page
 					</section> <!-- end article section -->
 						
 					<footer>
-			
 							<p class="clearfix"><?php the_tags('<span class="tags">' . __("Tags","wpbootstrap") . ': ', ', ', '</span>'); ?></p>
 
 					</footer> <!-- end article footer -->

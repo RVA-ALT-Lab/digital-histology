@@ -89,6 +89,9 @@ function hideSlideTitles(){
 
   function bigRandomizer(){   
       if ( localStorage.getItem('random-list')){
+    
+          jQuery("#previous-link").removeClass('hidden');
+          jQuery("#next-link").removeClass('hidden');
           let randomLinks = localStorage.getItem('random-list').split(',');
           if (!localStorage.getItem('random-list-page-number')){
             console.log('no page number')
@@ -102,8 +105,10 @@ function hideSlideTitles(){
           let totalPages = document.querySelector('.total-pages').innerHTML = (randomPageCounter+1) +' of ' + randomLinks.length;
 
           if (localStorage.getItem('random-list-page-number') === 0){
-            document.getElementById('nav-arrow-left').innerHTML = ' '
-            let next = document.getElementById('next-link').href = randomLinks[randomPageCounter]
+                document.getElementById('nav-arrow-left').innerHTML = ' '
+                let next = document.getElementById('next-link')
+                next.innerHTML = 'NEXT' + randomLinks[randomPageCounter+1]
+                randomNavMath(next,1)
           } else {
             console.log(randomLinks[randomPageCounter])
             if (document.getElementById('next-link')){

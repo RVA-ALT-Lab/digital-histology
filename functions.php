@@ -110,7 +110,7 @@ function custom_breadcrumbs(){
 
                 // Current page
                 echo '<span class="item-current item-' . $post->ID . '"><strong title="' . get_the_title() . '"> ' . get_the_title() . '</strong></span>';
-                echo '<button class="eyeball" id="quizzer">Hide</button>';
+               
             } else {
 
                 // Just display current page if not parents
@@ -174,30 +174,49 @@ function getPrevNext(){
 
         echo '<div class="navigation col-md-9" id="hist-nav" data-pages="'.$page_num.'">';
 
-        if (!empty($prevID)) {
-            echo '<a id="previous-link" href="';
-            echo get_permalink($prevID);
+        if(empty($prevID)){
+             $hidden_prev = 'class="hidden"';
+        } else {
+             $hidden_prev = '';
+        }
+       
+       
+            echo '<a ' . $hidden_prev . ' id="previous-link" href="';
+            if (!empty($prevID)){
+                echo get_permalink($prevID);
+            }
             echo '" ';
             echo 'title="';
-            echo get_the_title($prevID);
+            if (!empty($prevID)){
+                echo get_the_title($prevID);
+            }
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-left"><img src="'.get_stylesheet_directory_uri().'/imgs/arrow_left_ai.svg" alt="Left arrow."> PREVIOUS';
             echo '</div>';
             echo '</a>';
-        }
+        
 
         if (empty($prevID)){
             echo '<div class="col-md-5 nav-arrow-empty" id="nav-arrow-left"></div>';
         }
         echo '<div class="total-pages col-md-2">'.($current+1) . ' of ' . $page_num . '</div>';
-        if (!empty($nextID)) {
+       
+        if(empty($nextID)){
+             $hidden_next = 'class="hidden"';
+        } else {
+             $hidden_next = '';
+        }
 
-            echo '<a id="next-link" href="';
-            echo get_permalink($nextID);
+            echo '<a ' . $hidden_next . '  id="next-link" href="';
+            if (!empty($nextID)){
+               echo get_permalink($nextID);
+            }
             echo '"';
             echo 'title="';
-            echo get_the_title($nextID);
+            if (!empty($nextID)){
+                echo get_the_title($nextID);
+            }
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-right">NEXT <img src="'.get_stylesheet_directory_uri().'/imgs/arrow_right_ai.svg" alt="Right arrow." ></div></a>';
-        }
+
         if ($page_num >1){
         echo '<div class="page-slider col-md-12"><input type="range" min="1" max="'.$page_num.'" value="'.($current+1).'" class="slider" id="slide-the-pages"></div>';
     }
