@@ -90,44 +90,45 @@ function hideSlideTitles(){
   function bigRandomizer(){   
       if ( localStorage.getItem('random-list')){
           let randomLinks = localStorage.getItem('random-list').split(',');
-          randomLinks = shuffle(randomLinks);
           if (!localStorage.getItem('random-list-page-number')){
             console.log('no page number')
-             var randomPageCounter = localStorage.setItem('random-list-page-number', 1)
+             var randomPageCounter = localStorage.setItem('random-list-page-number', 0)
           } else {
-            console.log(localStorage.getItem('random-list-page-number'))
+            console.log('page # ' + localStorage.getItem('random-list-page-number'))
             var randomPageCounter = parseInt(localStorage.getItem('random-list-page-number'))
-            localStorage.setItem('random-list-page-number', (parseInt(randomPageCounter)+1))
+            //localStorage.setItem('random-list-page-number', (parseInt(randomPageCounter)+1))
           }
           
-          let totalPages = document.querySelector('.total-pages').innerHTML = randomPageCounter +' of ' + randomLinks.length;
+          let totalPages = document.querySelector('.total-pages').innerHTML = (randomPageCounter+1) +' of ' + randomLinks.length;
 
-          if (localStorage.getItem('random-list-page-number') === 1){
+          if (localStorage.getItem('random-list-page-number') === 0){
             document.getElementById('nav-arrow-left').innerHTML = ' '
             let next = document.getElementById('next-link').href = randomLinks[randomPageCounter]
           } else {
             console.log(randomLinks[randomPageCounter])
-            let next = document.getElementById('next-link').href = randomLinks[randomPageCounter+1]
-            let previous = document.getElementById('previous-link').href = randomLinks[randomPageCounter-1]
+            if (document.getElementById('next-link')){
+                let next = document.getElementById('next-link')
+                next.href = randomLinks[randomPageCounter+1]
+                randomNavMath(next,1)
+            }
+
+            if (document.getElementById('previous-link')){
+              let previous = document.getElementById('previous-link')
+              previous.href = randomLinks[randomPageCounter-1]
+              randomNavMath(previous,-1)
+            }
           }
         }
     }
 
 
-//from https://javascript.info/task/shuffle
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-
-    // swap elements array[i] and array[j]
-    // we use "destructuring assignment" syntax to achieve that
-    // you'll find more details about that syntax in later chapters
-    // same can be written as:
-    // let t = array[i]; array[i] = array[j]; array[j] = t
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
+function randomNavMath(id,value){
+   let randomPageCounter = parseInt(localStorage.getItem('random-list-page-number'))
+  id.addEventListener("click", function(){
+   localStorage.setItem('random-list-page-number', (parseInt(randomPageCounter)+value))
+  });
 }
+
 
 function showSlideTitles(){
   //window.location.hash = '';
@@ -180,7 +181,7 @@ jQuery( document ).ready(function() {
       let mainSlide = document.getElementById('slide-button-0');
       bigRandomizer();
       if (mainSlide){
-        console.log(mainSlide.setAttribute('href', mainSlide.href+'#hidden'));
+        mainSlide.setAttribute('href', mainSlide.href+'#hidden');
       }
 
     hideSlideTitles();

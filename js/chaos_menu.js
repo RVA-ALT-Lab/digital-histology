@@ -161,14 +161,32 @@ function stunLinks() {
       .parentsUntil(".cell-chaos-index")
       .addClass("active");
       let links = this.parentNode.querySelectorAll('.end');
+      console.log(links)
       let travelLinks = [];
       links.forEach(function(link){
         travelLinks.push(link+'/#hidden')
       })
-      localStorage.setItem('random-list',travelLinks);
-      localStorage.setItem('random-list-page-number', 1)
+      let  randomLinks = shuffle(travelLinks);
+      localStorage.setItem('random-list',randomLinks);
+      localStorage.setItem('random-list-page-number', 0)
       window.location.href = get_random(links).href+'/#hidden'
   });
+}
+
+
+//from https://javascript.info/task/shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+    // swap elements array[i] and array[j]
+    // we use "destructuring assignment" syntax to achieve that
+    // you'll find more details about that syntax in later chapters
+    // same can be written as:
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 get_random = function (list) {
@@ -232,8 +250,4 @@ function updateURL(id) {
       id;
     window.history.pushState({ path: newurl }, "", newurl);
   }
-}
-
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
 }
