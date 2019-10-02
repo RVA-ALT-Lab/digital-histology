@@ -172,31 +172,26 @@ function getPrevNext(){
         }    
 
         echo '<div class="navigation col-md-9" id="hist-nav" data-pages="'.$page_num.'">';
-
+        //PREVIOUS
         if(empty($prevID)){
-             $hidden_prev = 'class="hidden"';
+            echo '<div class="col-md-5 nav-arrow-empty" id="nav-arrow-left"></div>';
         } else {
-             $hidden_prev = '';
-        }
-       
-       
-            echo '<a ' . $hidden_prev . ' id="previous-link" href="';
-            if (!empty($prevID)){
-                echo get_permalink($prevID);
-            }
+            echo '<a id="previous-link" href="';
+                if (!empty($prevID)){
+                    echo get_permalink($prevID);
+                }
             echo '" ';
             echo 'title="';
-            if (!empty($prevID)){
-                echo get_the_title($prevID);
-            }
+                if (!empty($prevID)){
+                    echo get_the_title($prevID);
+                }
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-left"><img src="'.get_stylesheet_directory_uri().'/imgs/arrow_left_ai.svg" alt="Left arrow."> PREVIOUS';
             echo '</div>';
             echo '</a>';
-        
-
-        if (empty($prevID)){
-            echo '<div class="col-md-5 nav-arrow-empty" id="nav-arrow-left"></div>';
         }
+       
+       //NEXT
+
         echo '<div class="total-pages col-md-2">'.($current+1) . ' of ' . $page_num . '</div>';
        
         if(empty($nextID)){
