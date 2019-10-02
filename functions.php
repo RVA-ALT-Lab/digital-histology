@@ -164,8 +164,7 @@ function getPrevNext(){
         $current = array_search(get_the_ID(), $pages);
 
         $page_num =sizeof($pages);
-
-        if($current > 1){
+        if($current >= 1){
             $prevID = $pages[$current-1];
             }
         if ($current+1 < $page_num){

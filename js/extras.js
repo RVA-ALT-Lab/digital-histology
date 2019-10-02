@@ -104,10 +104,10 @@ function hideSlideTitles(){
           
           let totalPages = document.querySelector('.total-pages').innerHTML = (randomPageCounter+1) +' of ' + randomLinks.length;
 
-          if (localStorage.getItem('random-list-page-number') === 0){
-                document.getElementById('nav-arrow-left').innerHTML = ' '
+          if (localStorage.getItem('random-list-page-number') == 0){
+                document.getElementById('previous-link').classList = 'unsee'
                 let next = document.getElementById('next-link')
-                next.innerHTML = 'NEXT' + randomLinks[randomPageCounter+1]
+                next.href = randomLinks[randomPageCounter+1]
                 randomNavMath(next,1)
           } else {
             console.log(randomLinks[randomPageCounter])
@@ -115,6 +115,9 @@ function hideSlideTitles(){
                 let next = document.getElementById('next-link')
                 next.href = randomLinks[randomPageCounter+1]
                 randomNavMath(next,1)
+                if (randomPageCounter+1 >= randomLinks.length){
+                   next.classList = 'unsee';
+                }
             }
 
             if (document.getElementById('previous-link')){

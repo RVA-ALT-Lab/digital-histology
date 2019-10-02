@@ -995,3 +995,7 @@ i {
 #chaos ul {
   list-style: none;
 }
+
+.unsee {
+  visibility: hidden;
+}
