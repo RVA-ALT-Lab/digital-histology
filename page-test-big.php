@@ -54,7 +54,7 @@ Template Name: Histology Page
 										}
 									?>
 									<div id="subcontent-<?php echo $count;?>" class="subcontent-<?php echo $count;?> subslide" <?php get_post_background_img ($post)?>>
-										<img id="overlay-<?php echo $count ;?>" src="<?php echo $image[url]; ?>" alt="<?php echo $title . ' ' . $content;?>">
+										<img id="overlay-<?php echo $count ;?>" src="<?php echo $image['url']; ?>" alt="<?php echo $title . ' ' . $content;?>">
 										<?php if( $title ): ?>											
 											<h3 class="slide-title sub-deep">
 												<?php echo $title; ?>

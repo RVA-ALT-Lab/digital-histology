@@ -90,34 +90,31 @@ function hideSlideTitles(){
   function bigRandomizer(){   
       if ( localStorage.getItem('random-list')){
     
-          jQuery("#previous-link").removeClass('hidden');
-          jQuery("#next-link").removeClass('hidden');
           let randomLinks = localStorage.getItem('random-list').split(',');
+
           if (!localStorage.getItem('random-list-page-number')){
             console.log('no page number')
              var randomPageCounter = localStorage.setItem('random-list-page-number', 0)
           } else {
             console.log('page # ' + localStorage.getItem('random-list-page-number'))
             var randomPageCounter = parseInt(localStorage.getItem('random-list-page-number'))
-            //localStorage.setItem('random-list-page-number', (parseInt(randomPageCounter)+1))
           }
           
           let totalPages = document.querySelector('.total-pages').innerHTML = (randomPageCounter+1) +' of ' + randomLinks.length;
 
           if (localStorage.getItem('random-list-page-number') == 0){
-                document.getElementById('previous-link').classList = 'unsee'
-                let next = document.getElementById('next-link')
-                next.href = randomLinks[randomPageCounter+1]
-                randomNavMath(next,1)
+                // let next = document.getElementById('next-link')
+                // next.href = randomLinks[randomPageCounter+1]
+                // randomNavMath(next,1)
+                let prev = document.getElementById('previous-link')
+                prev.innerHTML = '&nbsp;'
           } else {
             console.log(randomLinks[randomPageCounter])
-            if (document.getElementById('next-link')){
+            if (randomLinks[randomPageCounter+1]){
+                jQuery( "#nav-arrow-right" ).wrap( '<a href="'+randomLinks[randomPageCounter+1]+'" id="next-link">NEXT </a>' );
                 let next = document.getElementById('next-link')
-                next.href = randomLinks[randomPageCounter+1]
+                //next.href = randomLinks[randomPageCounter+1]
                 randomNavMath(next,1)
-                if (randomPageCounter+1 >= randomLinks.length){
-                   next.classList = 'unsee';
-                }
             }
 
             if (document.getElementById('previous-link')){

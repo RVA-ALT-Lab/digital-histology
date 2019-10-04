@@ -195,21 +195,19 @@ function getPrevNext(){
         echo '<div class="total-pages col-md-2">'.($current+1) . ' of ' . $page_num . '</div>';
        
         if(empty($nextID)){
-             $hidden_next = 'class="hidden"';
+            echo '<div class="col-md-5 nav-arrow-empty" id="nav-arrow-right"></div>';
         } else {
-             $hidden_next = '';
-        }
+            
 
-            echo '<a ' . $hidden_next . '  id="next-link" href="';
+            echo '<a id="next-link" href="';
             if (!empty($nextID)){
                echo get_permalink($nextID);
             }
             echo '"';
             echo 'title="';
-            if (!empty($nextID)){
-                echo get_the_title($nextID);
-            }
+            echo get_the_title($nextID);
             echo'"><div class="col-md-5 nav-arrow" id="nav-arrow-right">NEXT <img src="'.get_stylesheet_directory_uri().'/imgs/arrow_right_ai.svg" alt="Right arrow." ></div></a>';
+        }
 
         if ($page_num >1){
         echo '<div class="page-slider col-md-12"><input type="range" min="1" max="'.$page_num.'" value="'.($current+1).'" class="slider" id="slide-the-pages"></div>';
