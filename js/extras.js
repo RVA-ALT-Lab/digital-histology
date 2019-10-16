@@ -111,7 +111,7 @@ function hideSlideTitles(){
           } else {
             console.log(randomLinks[randomPageCounter])
             if (randomLinks[randomPageCounter+1]){
-                jQuery( "#nav-arrow-right" ).wrap( '<a href="'+randomLinks[randomPageCounter+1]+'" id="next-link">NEXT </a>' );
+                jQuery( "#nav-arrow-right" ).wrap( '<a href="'+randomLinks[randomPageCounter+1]+'" id="next-link"></a>' );
                 let next = document.getElementById('next-link')
                 //next.href = randomLinks[randomPageCounter+1]
                 randomNavMath(next,1)
